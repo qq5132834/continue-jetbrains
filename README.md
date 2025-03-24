@@ -13,4 +13,7 @@
 
 5. chatgpt
    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
+
+6. idea官网下载 1.0.2 版本的 continue 插件， https://downloads.marketplace.jetbrains.com/files/22707/689483/continue-intellij-extension-1.0.2.zip?updateId=689483&pluginId=22707&family=INTELLIJ
+7. 解压 continue-1.0.2-jetbrains.zip 将其中的 core、ripgrep文件夹 复制到构建目录中  ..\build\idea-sandbox\plugins-uiTest\continue-intellij-extension
 ```
