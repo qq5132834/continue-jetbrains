@@ -6,5 +6,11 @@
    Tasks -> intellij -> buildPlugin
 
 3. 调试
-   Run Configurations  -> Run Test IDE 
+   Run Configurations  -> Run Test IDE
+
+4. deepseek
+   44f71989e4e6494fbbdd810d20db985d
+
+5. chatgpt
+   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
 ```
