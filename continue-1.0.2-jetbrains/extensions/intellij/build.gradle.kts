@@ -5,8 +5,14 @@ fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
 fun Sync.prepareSandbox() {
-    from("../../binary/bin") { into("${intellij.pluginName.get()}/core/") }
-    from("../vscode/node_modules/@vscode/ripgrep") { into("${intellij.pluginName.get()}/ripgrep/") }
+    // https://plugins.jetbrains.com/plugin/22707-continue
+    // 从idea插件官网下载，将其对应的exe文件复制到对应目录中
+
+
+//    from("../../binary/bin") { into("${intellij.pluginName.get()}/core/") }
+    from("D:/java_env/continue-intellij-extension-1.0.2/continue-intellij-extension/core") { into("${intellij.pluginName.get()}/core/") }
+//    from("../vscode/node_modules/@vscode/ripgrep") { into("${intellij.pluginName.get()}/ripgrep/") }
+    from("D:/java_env/continue-intellij-extension-1.0.2/continue-intellij-extension/ripgrep") { into("${intellij.pluginName.get()}/ripgrep/") }
 }
 
 val remoteRobotVersion = "0.11.23"
