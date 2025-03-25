@@ -13,6 +13,12 @@ fun Sync.prepareSandbox() {
     from("D:/java_env/continue-intellij-extension-1.0.2/continue-intellij-extension/core") { into("${intellij.pluginName.get()}/core/") }
 //    from("../vscode/node_modules/@vscode/ripgrep") { into("${intellij.pluginName.get()}/ripgrep/") }
     from("D:/java_env/continue-intellij-extension-1.0.2/continue-intellij-extension/ripgrep") { into("${intellij.pluginName.get()}/ripgrep/") }
+    /***
+     * 1. 解压 D:/java_env/continue-intellij-extension-1.0.2/continue-intellij-extension/lib/instrumented-continue-intellij-extension-1.0.2.jar
+     * 2. 将 instrumented-continue-intellij-extension-1.0.2\webview 替换 ../extensions/intellij/src/main/resources/webview 中
+     * 3. 多次构建 gradle/intellij/buildPlugin
+     * 4. Run Test IDE
+     */
 }
 
 val remoteRobotVersion = "0.11.23"
