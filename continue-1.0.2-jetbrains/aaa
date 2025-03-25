@@ -1,0 +1,4 @@
+java.io.IOException: Cannot run program "
+D:\AAAAAAAAAAAAAAAAAAAA\github\continue-jetbrains\continue-1.0.2-jetbrains\extensions\intellij\build\idea-sandbox\plugins-uiTest\continue-intellij-extension\core\win32-x64\continue-binary.exe"
+(in directory "
+D:\AAAAAAAAAAAAAAAAAAAA\github\continue-jetbrains\continue-1.0.2-jetbrains\extensions\intellij\build\idea-sandbox\plugins-uiTest\continue-intellij-extension\core\win32-x64"): CreateProcess error=2, 系统找不到指定的文件。
