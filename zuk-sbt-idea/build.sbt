@@ -9,6 +9,8 @@ ThisBuild / intellijBuild := "243.22562.218"
 //https://cache-redirector.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/2022.3.3/ideaIC-2022.3.3.zip
 ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity
 
+val remoteRobotVersion = "0.11.23"
+
 lazy val myAwesomeFramework =
   project.in(file("."))
     .enablePlugins(SbtIdeaPlugin)
@@ -19,7 +21,13 @@ lazy val myAwesomeFramework =
       Compile / scalacOptions ++= Seq("--release", "17"),
       intellijPlugins += "com.intellij.properties".toPlugin,
       libraryDependencies ++= Seq(
-        "com.eclipsesource.minimal-json" % "minimal-json" % "0.9.5"
+        "com.eclipsesource.minimal-json" % "minimal-json" % "0.9.5",
+        "com.intellij.remoterobot" % "remote-robot" % s"${remoteRobotVersion}",
+        "com.intellij.remoterobot" % "remote-fixtures" % s"${remoteRobotVersion}",
+        "org.junit.jupiter" % "junit-jupiter-api" % "5.10.0",
+        "org.junit.jupiter" % "junit-jupiter-engine" % "5.9.2",
+        "com.squareup.okhttp3" % "logging-interceptor" % "4.12.0",
+        "com.automation-remarks" % "video-recorder-junit5" % "2.0"
       ),
       Compile / unmanagedResourceDirectories += baseDirectory.value / "resources",
       Test / unmanagedResourceDirectories += baseDirectory.value / "testResources",
