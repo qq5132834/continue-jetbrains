@@ -1,3 +1,10 @@
+# 构建生成 idea 插件包
+```
+sbt -> sbt tasks -> packageArtifactZip （右键） -> run 
+
+在target 下生成  xxx.zip 文件
+```
+
 # Sample IntelliJ platform plugin written in Scala
 
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
