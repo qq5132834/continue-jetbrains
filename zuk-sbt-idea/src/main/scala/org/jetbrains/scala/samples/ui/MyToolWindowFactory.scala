@@ -2,6 +2,7 @@
 
 package org.jetbrains.scala.samples.ui
 
+import com.github.continuedev.continueintellijextension.toolWindow.ContinueBrowser
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.{ToolWindow, ToolWindowFactory}
 import com.intellij.openapi.wm.ToolWindow
@@ -39,18 +40,19 @@ class MyToolWindowFactory extends ToolWindowFactory {
     //val htmlFilePath = "D:\\AAAAAAAAAAAAAAAAAAAA\\github\\continue-jetbrains\\zuk-sbt-idea\\src\\main\\resources\\index.html"
     //val htmlFilePath = "D:/AAAAAAAAAAAAAAAAAAAA/github/continue-jetbrains/continue-1.0.2-jetbrains/extensions/intellij/src/main/resources/webview/index.html"
     val htmlFilePath = "https://www.baidu.com/"
-
-
 //    val htmlFilePath = "http://localhost:5173/jetbrains_index.html"
-
     // 创建 JCEF 浏览器实例
     val browser = new JBCefBrowser(htmlFilePath)
-
     // 创建内容面板
-
     val content = ContentFactory.getInstance().createContent(browser.getComponent, "Web View", false)
-
     toolWindow.getContentManager.addContent(content)
+
+  }
+
+  def continueWeb(project: Project, url: String): Unit = {
+    val browser = new ContinueBrowser(project, url)
+    browser.init()
+    
 
   }
 

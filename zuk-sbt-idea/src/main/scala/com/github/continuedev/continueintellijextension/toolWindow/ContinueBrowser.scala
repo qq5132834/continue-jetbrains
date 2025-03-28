@@ -28,9 +28,10 @@ class ContinueBrowser(val project: Project, url: String) {
   var browser: JBCefBrowser = null
 
   def init() = {
-    val isOSREnabled = ServiceManager.getService(classOf[ContinueExtensionSettings]).continueState.enableOSR
-
-    this.browser = JBCefBrowser.createBuilder().setOffScreenRendering(isOSREnabled).build()
+//    val isOSREnabled = ServiceManager.getService(classOf[ContinueExtensionSettings]).continueState.enableOSR
+//
+//    this.browser = JBCefBrowser.createBuilder().setOffScreenRendering(isOSREnabled).build()
+    this.browser = JBCefBrowser.createBuilder().setOffScreenRendering(true).build()
 
     registerAppSchemeHandler()
     browser.loadURL(url)
