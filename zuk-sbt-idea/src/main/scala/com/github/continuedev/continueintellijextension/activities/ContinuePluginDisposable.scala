@@ -12,7 +12,7 @@ import com.intellij.openapi.project.Project
  *
  * @author lk
  */
-@Service(Service.Level.APP, Service.Level.PROJECT)
+//@Service(Service.Level.APP, Service.Level.PROJECT)
 class ContinuePluginDisposable extends Disposable {
 
   override def dispose(): Unit = {

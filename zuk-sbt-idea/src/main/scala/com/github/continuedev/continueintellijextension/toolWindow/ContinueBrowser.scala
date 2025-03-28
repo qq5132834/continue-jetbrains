@@ -67,7 +67,7 @@ class ContinueBrowser(val project: Project, url: String) {
         val map = scala.collection.mutable.HashMap[String, AnyRef]()
         map.put("status" , "success")
         map.put("content" , data)
-        map.put("done" , true)
+//        map.put("done" , true)
         sendToWebview(messageType, map, if( messageId!=null) messageId else uuid())
 
       }
