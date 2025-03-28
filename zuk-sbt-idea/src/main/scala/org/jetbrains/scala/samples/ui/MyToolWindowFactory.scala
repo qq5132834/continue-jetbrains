@@ -38,8 +38,10 @@ class MyToolWindowFactory extends ToolWindowFactory {
     //val htmlFilePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "index.html").toUri.toString
     //val htmlFilePath = "D:\\AAAAAAAAAAAAAAAAAAAA\\github\\continue-jetbrains\\zuk-sbt-idea\\src\\main\\resources\\index.html"
     //val htmlFilePath = "D:/AAAAAAAAAAAAAAAAAAAA/github/continue-jetbrains/continue-1.0.2-jetbrains/extensions/intellij/src/main/resources/webview/index.html"
-    //val htmlFilePath = "https://www.baidu.com/"
-    val htmlFilePath = "http://localhost:5173/jetbrains_index.html"
+    val htmlFilePath = "https://www.baidu.com/"
+
+
+//    val htmlFilePath = "http://localhost:5173/jetbrains_index.html"
 
     // 创建 JCEF 浏览器实例
     val browser = new JBCefBrowser(htmlFilePath)
