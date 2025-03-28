@@ -10,13 +10,13 @@ import java.net.URLConnection
 
 class CustomSchemeHandlerFactory extends CefSchemeHandlerFactory {
 
-  override def create(cefBrowser: CefBrowser,
-                      cefFrame: CefFrame,
-                      s: String,
-                      cefRequest: CefRequest): CefResourceHandler = {
+  override def create(browser: CefBrowser,
+                      frame: CefFrame,
+                      schemeName: String,
+                      request: CefRequest
+                     ): CefResourceHandler = {
     new CustomResourceHandler()
   }
-
 }
 
 
