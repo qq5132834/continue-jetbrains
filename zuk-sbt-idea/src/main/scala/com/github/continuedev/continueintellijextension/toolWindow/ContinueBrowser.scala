@@ -1,5 +1,6 @@
 package com.github.continuedev.continueintellijextension.toolWindow
 
+import com.github.continuedev.continueintellijextension.services.ContinueExtensionSettings
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.project.Project
 import com.intellij.ui.jcef.JBCefBrowser
@@ -19,8 +20,8 @@ class ContinueBrowser(val project: Project, url: String) {
   val browser: JBCefBrowser = null
 
   def init() = {
-    //val isOSREnabled = ServiceManager.getService(ContinueExtensionSettings::class.java).continueState.enableOSR
-    val isOSREnabled = ServiceManager.getService(ContinueEx)
+    val isOSREnabled = ServiceManager.getService(classOf[ContinueExtensionSettings]).continueState.enableOSR
+
   }
 
 }
