@@ -8,10 +8,12 @@ import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.components.{JBOptionButton, JBPanel, JBTextField}
 import com.intellij.ui.content.{Content, ContentFactory}
+import com.intellij.ui.jcef.JBCefBrowser
 
 import javax.swing.{JOptionPane, JPanel}
 import java.awt.GridLayout
 import java.awt.GridLayout
+import java.nio.file.Paths
 
 class MyToolWindowFactory extends ToolWindowFactory {
 
@@ -22,13 +24,28 @@ class MyToolWindowFactory extends ToolWindowFactory {
    */
   override def createToolWindowContent(project: Project, toolWindow: ToolWindow): Unit = {
     //toolWindow.getComponent.add(new JBLabel(SamplePluginBundle.message("my.cool.tool.window")))
-    val panel = new JBPanel(new GridLayout(3, 1))
-    val inputField1 = new JBTextField()
-    val inputField2 = new JBTextField()
-    panel.add(inputField1)
-    panel.add(inputField2)
 
-    toolWindow.getComponent.add(panel)
+    //    val panel = new JBPanel(new GridLayout(3, 1))
+//    val inputField1 = new JBTextField()
+//    val inputField2 = new JBTextField()
+//    panel.add(inputField1)
+//    panel.add(inputField2)
+//
+//    toolWindow.getComponent.add(panel)
+
+
+    // 获取本地 HTML 文件路径
+    //val htmlFilePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "index.html").toUri.toString
+    val htmlFilePath = "D:\\AAAAAAAAAAAAAAAAAAAA\\github\\continue-jetbrains\\zuk-sbt-idea\\src\\main\\resources\\index.html"
+
+    // 创建 JCEF 浏览器实例
+    val browser = new JBCefBrowser(htmlFilePath)
+
+    // 创建内容面板
+
+    val content = ContentFactory.getInstance().createContent(browser.getComponent, "Web View", false)
+
+    toolWindow.getContentManager.addContent(content)
 
   }
 
