@@ -14,30 +14,11 @@ class CustomSchemeHandlerFactory extends CefSchemeHandlerFactory {
                       cefFrame: CefFrame,
                       s: String,
                       cefRequest: CefRequest): CefResourceHandler = {
-    null
+    new CustomResourceHandler()
   }
 
 }
 
-class CustomResourceHandler extends CefResourceHandler {
-  private var state: ResourceHandlerState = ClosedConnection
-  override def processRequest(cefRequest: CefRequest, cefCallback: CefCallback): Boolean = {
-    false
-  }
-
-  override def getResponseHeaders(cefResponse: CefResponse, intRef: IntRef, stringRef: StringRef): Unit = {
-
-  }
-
-  override def readResponse(bytes: Array[Byte], i: Int, intRef: IntRef, cefCallback: CefCallback): Boolean = {
-    false
-  }
-
-  override def cancel(): Unit = {
-
-  }
-
-}
 
 class CustomResourceHandler extends CefResourceHandler {
   private var state: ResourceHandlerState = ClosedConnection
