@@ -1,7 +1,12 @@
 import org.jetbrains.sbtidea.Keys.*
 
+// 这里下载速度慢，可以手动下载后，放到 C:\Users\5132\.MyAwesomeFrameworkPluginIC\sdk\downloads 路径中
 ThisBuild / intellijPluginName := "My Awesome Framework"
 ThisBuild / intellijBuild := "243.22562.218"
+//https://cache-redirector.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/243.22562.218/ideaIC-243.22562.218.zip
+
+//ThisBuild / intellijBuild := "2022.3.3"
+//https://cache-redirector.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/2022.3.3/ideaIC-2022.3.3.zip
 ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity
 
 lazy val myAwesomeFramework =
