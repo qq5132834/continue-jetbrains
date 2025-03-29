@@ -5,6 +5,11 @@ sbt -> sbt tasks -> packageArtifactZip （右键） -> run
 在target 下生成  xxx.zip 文件
 ```
 
+# 安装wls
+```
+在管理员模式下打开 PowerShell 或 Windows 命令提示符，方法是右键单击并选择“以管理员身份运行”，输入 wsl --install 命令，然后重启计算机。
+```
+
 # Sample IntelliJ platform plugin written in Scala
 
 [![JetBrains team project](http://jb.gg/badges/team.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
