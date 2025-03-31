@@ -34,20 +34,20 @@ class MyToolWindowFactory extends ToolWindowFactory {
     // 主操作 // 主操作
     val mainAction = new AbstractAction("主操作") {
       def actionPerformed(e: ActionEvent ): Unit = {
-        JOptionPane.showMessageDialog(null, "主操作被点击！")
+        JOptionPane.showMessageDialog(tab1, "主操作被点击！")
       }
     }
 
     // 额外选项
     val action1 = new AbstractAction("选项 A") {
       def actionPerformed(e: ActionEvent ): Unit = {
-        JOptionPane.showMessageDialog(null, "选项 A 被点击！")
+        JOptionPane.showMessageDialog(tab1, "选项 A 被点击！")
       }
     }
 
     val action2 = new AbstractAction("选项 B") {
       def actionPerformed(e: ActionEvent ): Unit = {
-        JOptionPane.showMessageDialog(null, "选项 B 被点击！")
+        JOptionPane.showMessageDialog(tab1, "选项 B 被点击！")
       }
     }
 
