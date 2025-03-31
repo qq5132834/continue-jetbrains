@@ -7,7 +7,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.{ToolWindow, ToolWindowFactory}
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.components.{JBLabel, JBOptionButton, JBPanel, JBTextField}
+import com.intellij.ui.components.{JBLabel, JBOptionButton, JBPanel, JBTabbedPane, JBTextField}
 import com.intellij.ui.content.{Content, ContentFactory}
 import com.intellij.ui.jcef.JBCefBrowser
 import org.jetbrains.scala.samples.SamplePluginBundle
@@ -25,7 +25,34 @@ class MyToolWindowFactory extends ToolWindowFactory {
     2. 当点击启动按钮时将两个输入框的数据弹出
    */
   override def createToolWindowContent(project: Project, toolWindow: ToolWindow): Unit = {
-    toolWindow.getComponent.add(new JBLabel(SamplePluginBundle.message("my.cool.tool.window")))
+
+    /***
+     * // 创建 Tab 组件
+     * JBTabbedPane tabbedPane = new JBTabbedPane();
+     *
+     * // 添加 Tab 页 1
+     * JPanel tab1 = new JBPanel<>();
+     * tab1.add(new JLabel("这是 Tab 1"));
+     * tabbedPane.addTab("Tab 1", tab1);
+     *
+     * // 添加 Tab 页 2
+     * JPanel tab2 = new JBPanel<>();
+     * tab2.add(new JLabel("这是 Tab 2"));
+     * tabbedPane.addTab("Tab 2", tab2);
+     */
+    val tabbedPane = new JBTabbedPane()
+    val tab1 = new JBPanel()
+    tab1.add(new JBLabel("my.cool.tool.window"))
+    tabbedPane.addTab("tool", tab1)
+
+    val htmlFilePath = "https://www.baidu.com/"
+    // 创建 JCEF 浏览器实例
+    val browser = new JBCefBrowser(htmlFilePath)
+    val tab2 = new JBPanel()
+    tab2.add(browser.getComponent)
+    tabbedPane.addTab("browser", tab2)
+
+//    toolWindow.getComponent.add(new JBLabel(SamplePluginBundle.message("my.cool.tool.window")))
 
     //    val panel = new JBPanel(new GridLayout(3, 1))
 //    val inputField1 = new JBTextField()
@@ -40,12 +67,12 @@ class MyToolWindowFactory extends ToolWindowFactory {
     //val htmlFilePath = Paths.get(System.getProperty("user.dir"), "src", "main", "resources", "index.html").toUri.toString
     //val htmlFilePath = "D:\\AAAAAAAAAAAAAAAAAAAA\\github\\continue-jetbrains\\zuk-sbt-idea\\src\\main\\resources\\index.html"
     //val htmlFilePath = "D:/AAAAAAAAAAAAAAAAAAAA/github/continue-jetbrains/continue-1.0.2-jetbrains/extensions/intellij/src/main/resources/webview/index.html"
-    val htmlFilePath = "https://www.baidu.com/"
+//    val htmlFilePath = "https://www.baidu.com/"
 //    val htmlFilePath = "http://localhost:5173/jetbrains_index.html"
     // 创建 JCEF 浏览器实例
-    val browser = new JBCefBrowser(htmlFilePath)
+//    val browser = new JBCefBrowser(htmlFilePath)
     // 创建内容面板
-    val content = ContentFactory.getInstance().createContent(browser.getComponent, "Web View", false)
+    val content = ContentFactory.getInstance().createContent(tabbedPane, "", false)
     toolWindow.getContentManager.addContent(content)
 
   }
