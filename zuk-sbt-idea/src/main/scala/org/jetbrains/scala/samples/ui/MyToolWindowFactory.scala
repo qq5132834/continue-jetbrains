@@ -50,7 +50,8 @@ class MyToolWindowFactory extends ToolWindowFactory {
         StockMonitor.printData()
         val url = input1.getText
         val price = input2.getText
-        printData(tabbedPane, url, price)
+        //printData(tabbedPane, url, price)
+        JOptionPane.showMessageDialog(tab1, s"${url},${price}")
       }
     }
     val list = ListBuffer[Action]()
