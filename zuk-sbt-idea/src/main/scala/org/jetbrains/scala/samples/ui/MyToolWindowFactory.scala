@@ -12,9 +12,10 @@ import com.intellij.ui.content.{Content, ContentFactory}
 import com.intellij.ui.jcef.JBCefBrowser
 import org.jetbrains.scala.samples.SamplePluginBundle
 
-import javax.swing.{JOptionPane, JPanel}
+import javax.swing.{AbstractAction, Action, JOptionPane, JPanel}
 import java.awt.GridLayout
 import java.awt.GridLayout
+import java.awt.event.ActionEvent
 import java.nio.file.Paths
 
 class MyToolWindowFactory extends ToolWindowFactory {
@@ -26,23 +27,33 @@ class MyToolWindowFactory extends ToolWindowFactory {
    */
   override def createToolWindowContent(project: Project, toolWindow: ToolWindow): Unit = {
 
-    /***
-     * // 创建 Tab 组件
-     * JBTabbedPane tabbedPane = new JBTabbedPane();
-     *
-     * // 添加 Tab 页 1
-     * JPanel tab1 = new JBPanel<>();
-     * tab1.add(new JLabel("这是 Tab 1"));
-     * tabbedPane.addTab("Tab 1", tab1);
-     *
-     * // 添加 Tab 页 2
-     * JPanel tab2 = new JBPanel<>();
-     * tab2.add(new JLabel("这是 Tab 2"));
-     * tabbedPane.addTab("Tab 2", tab2);
-     */
+
     val tabbedPane = new JBTabbedPane()
     val tab1 = new JBPanel()
+
+    // 主操作 // 主操作
+    val mainAction = new AbstractAction("主操作") {
+      def actionPerformed(e: ActionEvent ): Unit = {
+        JOptionPane.showMessageDialog(null, "主操作被点击！")
+      }
+    }
+
+    // 额外选项
+    val action1 = new AbstractAction("选项 A") {
+      def actionPerformed(e: ActionEvent ): Unit = {
+        JOptionPane.showMessageDialog(null, "选项 A 被点击！")
+      }
+    }
+
+    val action2 = new AbstractAction("选项 B") {
+      def actionPerformed(e: ActionEvent ): Unit = {
+        JOptionPane.showMessageDialog(null, "选项 B 被点击！")
+      }
+    }
+
+    val button = new JBOptionButton(mainAction, Array[Action](action1, action2))
     tab1.add(new JBLabel("my.cool.tool.window"))
+    tab1.add(button)
     tabbedPane.addTab("tool", tab1)
 
     val htmlFilePath = "https://www.baidu.com/"
