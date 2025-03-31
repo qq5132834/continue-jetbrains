@@ -7,9 +7,10 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.{ToolWindow, ToolWindowFactory}
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
-import com.intellij.ui.components.{JBOptionButton, JBPanel, JBTextField}
+import com.intellij.ui.components.{JBLabel, JBOptionButton, JBPanel, JBTextField}
 import com.intellij.ui.content.{Content, ContentFactory}
 import com.intellij.ui.jcef.JBCefBrowser
+import org.jetbrains.scala.samples.SamplePluginBundle
 
 import javax.swing.{JOptionPane, JPanel}
 import java.awt.GridLayout
@@ -24,7 +25,7 @@ class MyToolWindowFactory extends ToolWindowFactory {
     2. 当点击启动按钮时将两个输入框的数据弹出
    */
   override def createToolWindowContent(project: Project, toolWindow: ToolWindow): Unit = {
-    //toolWindow.getComponent.add(new JBLabel(SamplePluginBundle.message("my.cool.tool.window")))
+    toolWindow.getComponent.add(new JBLabel(SamplePluginBundle.message("my.cool.tool.window")))
 
     //    val panel = new JBPanel(new GridLayout(3, 1))
 //    val inputField1 = new JBTextField()
@@ -52,7 +53,7 @@ class MyToolWindowFactory extends ToolWindowFactory {
   def continueWeb(project: Project, url: String): Unit = {
     val browser = new ContinueBrowser(project, url)
     browser.init()
-    
+
 
   }
 
