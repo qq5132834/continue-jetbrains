@@ -9,6 +9,10 @@ ThisBuild / intellijBuild := "243.22562.218"
 //https://cache-redirector.jetbrains.com/intellij-repository/releases/com/jetbrains/intellij/idea/ideaIC/2022.3.3/ideaIC-2022.3.3.zip
 ThisBuild / intellijPlatform := IntelliJPlatform.IdeaCommunity
 
+ThisBuild / javacOptions ++= Seq("--release", "17")
+Compile / unmanagedSourceDirectories += baseDirectory.value / "src" / "main" / "java"
+Test / unmanagedSourceDirectories += baseDirectory.value / "src" / "test" / "java"
+
 val remoteRobotVersion = "0.11.23"
 
 lazy val myAwesomeFramework =
@@ -27,7 +31,8 @@ lazy val myAwesomeFramework =
         "org.junit.jupiter" % "junit-jupiter-api" % "5.10.0",
         "org.junit.jupiter" % "junit-jupiter-engine" % "5.9.2",
         "com.squareup.okhttp3" % "logging-interceptor" % "4.12.0",
-        "com.automation-remarks" % "video-recorder-junit5" % "2.0"
+        "com.automation-remarks" % "video-recorder-junit5" % "2.0",
+        "com.alibaba.fastjson2" % "fastjson2" % "2.0.42"
       ),
       Compile / unmanagedResourceDirectories += baseDirectory.value / "resources",
       Test / unmanagedResourceDirectories += baseDirectory.value / "testResources",
