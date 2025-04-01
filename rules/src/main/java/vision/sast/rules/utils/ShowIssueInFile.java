@@ -28,7 +28,7 @@ public class ShowIssueInFile {
             if(index > 0){
                 String divStr = "<div style='background-color: pink'>"
                         + dto.getName() + "<br>"
-                        + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType()  + "/" + "<br>"
+                        + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType()  + "/" + "<br>"
                         + dto.getRuleDesc() + "<br>"
                         + "</div>";
                 newLines.add(index, divStr);
