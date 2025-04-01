@@ -26,7 +26,7 @@ public class ShowIssueInFile {
             int line = dto.getLine();
             int index = line + insertTime;
             if(index > 0){
-                String divStr = "<div style='background-color: green'>" + dto.getRuleDesc() + "</div>";
+                String divStr = "<div style='background-color: red'>" + dto.getRuleDesc() + "</div>";
                 newLines.add(index, divStr);
                 insertTime++;
             }
