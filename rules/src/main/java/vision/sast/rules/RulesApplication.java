@@ -1,13 +1,39 @@
 package vision.sast.rules;
 
+import com.alibaba.fastjson2.JSONObject;
+import org.apache.commons.io.FileUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import vision.sast.rules.dto.IssueResult;
+
+import java.io.File;
+import java.nio.charset.Charset;
 
 @SpringBootApplication
 public class RulesApplication {
 
     public static void main(String[] args) {
+        if(args!=null && args.length>0){
+            String issuePath = args[0];
+            buildIssueResult(new File(issuePath));
+        }
         SpringApplication.run(RulesApplication.class, args);
+
+    }
+
+    public static IssueResult buildIssueResult(File file){
+        if(file!=null && file.exists()){
+            try {
+                StringBuilder stringBuilder = new StringBuilder();
+                FileUtils.readLines(file, Charset.forName("utf-8")).stream().map(line->line+"\n").forEach(stringBuilder::append);
+                IssueResult issueResult = JSONObject.parseObject(stringBuilder.toString(), IssueResult.class);
+                return issueResult;
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return new IssueResult();
     }
 
 }
