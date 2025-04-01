@@ -16,6 +16,19 @@ public class ShowIssueInFile {
         List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
         StringBuilder sb = new StringBuilder();
         int i = 1;
+
+
+        int insertTime = 0;
+        for (IssueDto dto: sortedList) {
+            int line = dto.getLine();
+            int index = line + insertTime;
+            if(index > 0){
+                String divStr = "<div class=\"issue\">" + dto.getRuleDesc() + "</div>";
+                lines.add(index, divStr);
+                insertTime++;
+            }
+        }
+
         for (String line : lines) {
 //            line.replaceAll(" ", "");
 //            line = "<div>" + line + "</div>";
@@ -24,6 +37,7 @@ public class ShowIssueInFile {
             sb.append("<br>");
             i++;
         }
+
 //        return sb.toString();
         return "<html>" +
                 "<head>" +
