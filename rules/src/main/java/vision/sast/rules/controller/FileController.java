@@ -21,6 +21,13 @@ public class FileController {
         if(list==null){
             Set<String> set = RulesApplication.ISSUE_RESULT.getResult().stream().map(dto->dto.getFilePath()).collect(Collectors.toSet());
             list = set.stream().toList().stream().sorted().toList();
+
+            list.forEach(f->{
+                if(fileIssuesMap.get(f)==null){
+                    List<IssueDto> dtos = RulesApplication.ISSUE_RESULT.getResult().stream().filter(dto->dto.getFilePath().equals(f)).toList();
+                    fileIssuesMap.put(f, dtos);
+                }
+            });
         }
     }
 
@@ -41,12 +48,7 @@ public class FileController {
     @GetMapping("file")
     public synchronized String file(String f) {
         loadInitList();
-        if(fileIssuesMap.get(f)==null){
-            List<IssueDto> dtos = RulesApplication.ISSUE_RESULT.getResult().stream().filter(dto->dto.getFilePath().equals(f)).toList();
-            fileIssuesMap.put(f, dtos);
-        }
         List<IssueDto> ls = fileIssuesMap.get(f);
-
         //数量
         Map<String, List<IssueDto>> vtidGroupMap = ls.stream().collect(Collectors.groupingBy(dto->dto.getVtId()));
 
