@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
+import vision.sast.rules.utils.ShowIssueInFile;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,7 +15,7 @@ public class FileController {
 
     public static List<String> list;
 
-    public static ConcurrentHashMap<String, List<IssueDto>> map = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, List<IssueDto>> fileIssuesMap = new ConcurrentHashMap<>();
 
     public synchronized static void loadInitList() {
         if(list==null){
@@ -25,17 +26,25 @@ public class FileController {
 
     @GetMapping("fileAndVtid")
     public String fileAndVtid(String vtid, String file) {
-        return vtid + "<br>" + file;
+
+        try {
+            return ShowIssueInFile.show(file, fileIssuesMap.get(file));
+        }catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+
+//        return vtid + "<br>" + file;
     }
 
     @GetMapping("file")
     public synchronized String file(String f) {
         loadInitList();
-        if(map.get(f)==null){
+        if(fileIssuesMap.get(f)==null){
             List<IssueDto> dtos = RulesApplication.ISSUE_RESULT.getResult().stream().filter(dto->dto.getFilePath().equals(f)).toList();
-            map.put(f, dtos);
+            fileIssuesMap.put(f, dtos);
         }
-        List<IssueDto> ls = map.get(f);
+        List<IssueDto> ls = fileIssuesMap.get(f);
 
         //数量
         Map<String, List<IssueDto>> vtidGroupMap = ls.stream().collect(Collectors.groupingBy(dto->dto.getVtId()));
