@@ -32,7 +32,6 @@ public class FileController {
         StringBuilder stringBuilder = new StringBuilder();
         list.stream().map(e->{
             String str = "<a href='file?f="+e+"'>"+e+"</a>";
-            //<a href="about.html">关于我们</a>
             return str + "<br>";
         }).forEach(stringBuilder::append);
         return stringBuilder.toString();
