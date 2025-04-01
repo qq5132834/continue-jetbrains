@@ -3,16 +3,18 @@ package vision.sast.rules.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vision.sast.rules.RulesApplication;
+import vision.sast.rules.dto.IssueDto;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @RestController
 public class FileController {
 
     public static List<String> list;
+
+    public static ConcurrentHashMap<String, List<IssueDto>> map = new ConcurrentHashMap<>();
 
     public synchronized static void loadInitList() {
         if(list==null){
@@ -21,9 +23,41 @@ public class FileController {
         }
     }
 
+    @GetMapping("fileAndVtid")
+    public String fileAndVtid(String vtid, String file) {
+        return vtid + "<br>" + file;
+    }
+
     @GetMapping("file")
-    public String file(String f){
-        return f;
+    public synchronized String file(String f) {
+        loadInitList();
+        if(map.get(f)==null){
+            List<IssueDto> dtos = RulesApplication.ISSUE_RESULT.getResult().stream().filter(dto->dto.getFilePath().equals(f)).toList();
+            map.put(f, dtos);
+        }
+        List<IssueDto> ls = map.get(f);
+
+        Map<String, String> vtidMap = new HashMap<>();
+        ls.stream().forEach(dto->{
+            String url = "<a href='fileAndVtid?vtid=" + dto.getVtId() + "&file=" + f + "'>"+ dto.getVtId() + "</a>"
+                    + "<br>" + dto.getRule()
+                    + "<br>" + dto.getDefectLevel()
+                    + "<br>" + dto.getRuleDesc()
+                    + "<br>" + "-------------------------------------------------------"
+                    + "<br>";
+            vtidMap.put(dto.getVtId(), url);
+        });
+
+
+        List<String> rules = ls.stream().map(dto->{
+            // &nbsp;&nbsp; 空格
+            return  "<a href='file?f="+dto.getVtId()+"'>"+dto.getVtId()+"</a>" + "<br>" + dto.getRule() + "<br>" + dto.getDefectLevel() + "<br>" + dto.getRuleDesc()+ "<br>" + "-------------------------------------------------------<br>";
+        }).collect(Collectors.toSet()).stream().toList();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        rules.stream().forEach(stringBuilder::append);
+
+        return f + ", " + ls.size() + "<br>" + stringBuilder.toString();
     }
 
     @GetMapping("/files")
