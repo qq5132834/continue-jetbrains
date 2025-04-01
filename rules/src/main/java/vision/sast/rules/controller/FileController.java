@@ -23,20 +23,20 @@ public class FileController {
             list = set.stream().toList().stream().sorted().toList();
         }
     }
-
-    @GetMapping("fileAndVtid")
-    public String fileAndVtid(String vtid, String file) {
-        loadInitList();
-        try {
-            List<IssueDto> dtos = fileIssuesMap.get(file).stream().filter(issueDto -> issueDto.getVtId().equals(vtid)).toList();
-            return ShowIssueInFile.show(file, dtos);
-        }catch (Exception e) {
-            e.printStackTrace();
-            return e.getMessage();
-        }
-
-//        return vtid + "<br>" + file;
-    }
+//
+//    @GetMapping("fileAndVtid")
+//    public String fileAndVtid(String vtid, String file) {
+//        loadInitList();
+//        try {
+//            List<IssueDto> dtos = fileIssuesMap.get(file).stream().filter(issueDto -> issueDto.getVtId().equals(vtid)).toList();
+//            return ShowIssueInFile.show(file, dtos);
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//            return e.getMessage();
+//        }
+//
+////        return vtid + "<br>" + file;
+//    }
 
     @GetMapping("file")
     public synchronized String file(String f) {
@@ -57,7 +57,7 @@ public class FileController {
             if(vtidGroupMap.get(dto.getVtId())!=null){
                 size = vtidGroupMap.get(dto.getVtId()).size();
             }
-            String url = "<a href='fileAndVtid?vtid=" + dto.getVtId() + "&file=" + f + "'>"+ dto.getVtId() + "</a>&nbsp;&nbsp;&nbsp;" + size
+            String url = "<a href='sourceCode?vtid=" + dto.getVtId() + "&file=" + f + "'>"+ dto.getVtId() + "</a>&nbsp;&nbsp;&nbsp;" + size
                     + "<br>" + dto.getRule()
                     + "<br>" + dto.getDefectLevel()
                     + "<br>" + dto.getRuleDesc()
