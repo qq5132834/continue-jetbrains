@@ -48,14 +48,8 @@ public class FileController {
             vtidMap.put(dto.getVtId(), url);
         });
 
-
-        List<String> rules = ls.stream().map(dto->{
-            // &nbsp;&nbsp; 空格
-            return  "<a href='file?f="+dto.getVtId()+"'>"+dto.getVtId()+"</a>" + "<br>" + dto.getRule() + "<br>" + dto.getDefectLevel() + "<br>" + dto.getRuleDesc()+ "<br>" + "-------------------------------------------------------<br>";
-        }).collect(Collectors.toSet()).stream().toList();
-
         StringBuilder stringBuilder = new StringBuilder();
-        rules.stream().forEach(stringBuilder::append);
+        vtidMap.values().forEach(vtid->stringBuilder.append(vtid));
 
         return f + ", " + ls.size() + "<br>" + stringBuilder.toString();
     }
