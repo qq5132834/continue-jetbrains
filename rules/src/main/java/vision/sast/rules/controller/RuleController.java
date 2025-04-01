@@ -31,7 +31,7 @@ public class RuleController {
         loadInitList();
         StringBuilder stringBuilder = new StringBuilder();
         ruleList.stream().map(e->{
-            String str = "<a href='file?f="+e+"'>"+e+"</a>";
+            String str = "<a href='rule?vtid="+e+"'>"+e+"</a>";
             return str + "<br>";
         }).forEach(stringBuilder::append);
         return stringBuilder.toString();
