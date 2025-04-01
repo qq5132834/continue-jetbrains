@@ -14,7 +14,7 @@ public class ShowIssueInFile {
     public static String show(String fileName, List<IssueDto> dtoList) throws Exception {
         List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
         List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("<ol>");
 
         List<String> newLines = lines.stream().map(line->{
             line = "<li>" +line + "</li>";
@@ -37,7 +37,7 @@ public class ShowIssueInFile {
             sb.append("<br>");
         }
 
-//        return sb.toString();
+        sb.append("</ol>");
         return "<html>" +
                 "<head>" +
 //                 "<link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css' rel='stylesheet'>" +
