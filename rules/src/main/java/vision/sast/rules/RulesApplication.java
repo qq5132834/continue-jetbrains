@@ -19,6 +19,10 @@ public class RulesApplication {
             String issuePath = args[0];
             ISSUE_RESULT = buildIssueResult(new File(issuePath));
         }
+        if(ISSUE_RESULT==null){
+            System.out.println("issue result is null");
+            System.exit(0);
+        }
         SpringApplication.run(RulesApplication.class, args);
 
     }
