@@ -26,9 +26,10 @@ public class FileController {
 
     @GetMapping("fileAndVtid")
     public String fileAndVtid(String vtid, String file) {
-
+        loadInitList();
         try {
-            return ShowIssueInFile.show(file, fileIssuesMap.get(file));
+            List<IssueDto> dtos = fileIssuesMap.get(file).stream().filter(issueDto -> issueDto.getVtId().equals(vtid)).toList();
+            return ShowIssueInFile.show(file, dtos);
         }catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();

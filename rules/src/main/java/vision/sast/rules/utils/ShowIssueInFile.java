@@ -5,11 +5,14 @@ import vision.sast.rules.dto.IssueDto;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ShowIssueInFile {
 
     public static String show(String fileName, List<IssueDto> dtoList) throws Exception {
+        List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
         List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
         StringBuilder sb = new StringBuilder();
         int i = 1;
