@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
-import vision.sast.rules.utils.ShowIssueInFile;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,30 +12,18 @@ import java.util.stream.Collectors;
 @RestController
 public class FileController {
 
-    public static List<String> list;
+    //文件总数
+    public static List<String> fileList;
 
+    //文件与issue集合关系
     public static ConcurrentHashMap<String, List<IssueDto>> fileIssuesMap = new ConcurrentHashMap<>();
 
     public synchronized static void loadInitList() {
-        if(list==null){
+        if(fileList ==null){
             Set<String> set = RulesApplication.ISSUE_RESULT.getResult().stream().map(dto->dto.getFilePath()).collect(Collectors.toSet());
-            list = set.stream().toList().stream().sorted().toList();
+            fileList = set.stream().toList().stream().sorted().toList();
         }
     }
-//
-//    @GetMapping("fileAndVtid")
-//    public String fileAndVtid(String vtid, String file) {
-//        loadInitList();
-//        try {
-//            List<IssueDto> dtos = fileIssuesMap.get(file).stream().filter(issueDto -> issueDto.getVtId().equals(vtid)).toList();
-//            return ShowIssueInFile.show(file, dtos);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//            return e.getMessage();
-//        }
-//
-////        return vtid + "<br>" + file;
-//    }
 
     @GetMapping("file")
     public synchronized String file(String f) {
@@ -76,7 +63,7 @@ public class FileController {
     public String files(){
         loadInitList();
         StringBuilder stringBuilder = new StringBuilder();
-        list.stream().map(e->{
+        fileList.stream().map(e->{
             String str = "<a href='file?f="+e+"'>"+e+"</a>";
             return str + "<br>";
         }).forEach(stringBuilder::append);
