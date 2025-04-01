@@ -12,6 +12,7 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class RulesApplication {
 
+    public static String ISSUE_FILEPATH;
     public static IssueResult ISSUE_RESULT;
 
     public static void main(String[] args) {
@@ -30,6 +31,8 @@ public class RulesApplication {
     public static IssueResult buildIssueResult(File file){
         if(file!=null && file.exists()){
             try {
+                ISSUE_FILEPATH = file.getAbsolutePath().replaceAll("\\\\", "/");
+                System.out.println(ISSUE_FILEPATH);
                 StringBuilder stringBuilder = new StringBuilder();
                 FileUtils.readLines(file, Charset.forName("utf-8")).stream().map(line->line+"\n").forEach(stringBuilder::append);
                 IssueResult issueResult = JSONObject.parseObject(stringBuilder.toString(), IssueResult.class);

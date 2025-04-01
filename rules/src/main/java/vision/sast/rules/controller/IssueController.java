@@ -5,13 +5,14 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vision.sast.rules.RulesApplication;
 
 @RestController
 public class IssueController {
 
     @GetMapping("")
     public  String list(){
-        return "index";
+        return "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size() + "<br>" + RulesApplication.ISSUE_FILEPATH;
     }
 
 
