@@ -12,10 +12,12 @@ import java.nio.charset.Charset;
 @SpringBootApplication
 public class RulesApplication {
 
+    public static IssueResult ISSUE_RESULT;
+
     public static void main(String[] args) {
         if(args!=null && args.length>0){
             String issuePath = args[0];
-            buildIssueResult(new File(issuePath));
+            ISSUE_RESULT = buildIssueResult(new File(issuePath));
         }
         SpringApplication.run(RulesApplication.class, args);
 
