@@ -12,7 +12,7 @@ public class IssueController {
 
     @GetMapping("")
     public  String list(){
-        return "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size() + "<br>" + RulesApplication.ISSUE_FILEPATH;
+        return RulesApplication.ISSUE_FILEPATH + "<br>" + "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size();
     }
 
 
