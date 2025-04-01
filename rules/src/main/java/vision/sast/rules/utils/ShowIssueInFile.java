@@ -15,27 +15,26 @@ public class ShowIssueInFile {
         List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
         List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
         StringBuilder sb = new StringBuilder();
-        int i = 1;
 
+        List<String> newLines = lines.stream().map(line->{
+            line = "<li>" +line + "</li>";
+            return line;
+        }).collect(Collectors.toList());
 
         int insertTime = 0;
         for (IssueDto dto: sortedList) {
             int line = dto.getLine();
             int index = line + insertTime;
             if(index > 0){
-                String divStr = "<div class=\"issue\">" + dto.getRuleDesc() + "</div>";
-                lines.add(index, divStr);
+                String divStr = "<div style='background-color: green'>" + dto.getRuleDesc() + "</div>";
+                newLines.add(index, divStr);
                 insertTime++;
             }
         }
 
-        for (String line : lines) {
-//            line.replaceAll(" ", "");
-//            line = "<div>" + line + "</div>";
-            //line = line.replaceAll("<", "&lt;").replaceAll(">", "&gt;");//.replaceAll(" ", "&nbsp;");
+        for (String line : newLines) {
             sb.append(line);
             sb.append("<br>");
-            i++;
         }
 
 //        return sb.toString();
