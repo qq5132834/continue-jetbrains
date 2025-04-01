@@ -5,12 +5,32 @@ import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vision.sast.rules.RulesApplication;
 
 @RestController
-public class IssueController {
+public class IndexController {
 
-    @GetMapping("issue")
-    public String issue(){
+    public static String baseInfo(){
+        return RulesApplication.ISSUE_FILEPATH + "<br>" + "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size();
+    }
+
+    @GetMapping("")
+    public  String index(){
+        return baseInfo();
+    }
+
+    @GetMapping("index")
+    public  String index1(){
+        return baseInfo();
+    }
+
+    @GetMapping("index.html")
+    public  String index2(){
+        return baseInfo();
+    }
+
+    @GetMapping("md")
+    public String md(){
         String md = "# 标题1\n" +
                 "## 标题2\n" +
                 "```java\n" +
@@ -24,6 +44,5 @@ public class IssueController {
         return renderer.render(document);
 
     }
-
 
 }
