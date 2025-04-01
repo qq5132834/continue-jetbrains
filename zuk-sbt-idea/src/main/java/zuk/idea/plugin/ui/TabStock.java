@@ -13,4 +13,16 @@ public class TabStock {
     public JPanel getPanelMain() {
         return panelMain;
     }
+
+    public static void main(String[] args) {
+        TabStock tabStock = new TabStock();
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setContentPane(tabStock.getPanelMain());
+        frame.setVisible(true);
+        frame.setSize(100,200);
+
+
+
+    }
 }
