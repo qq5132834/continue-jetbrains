@@ -37,9 +37,17 @@ public class FileController {
         }
         List<IssueDto> ls = map.get(f);
 
+        //数量
+        Map<String, List<IssueDto>> vtidGroupMap = ls.stream().collect(Collectors.groupingBy(dto->dto.getVtId()));
+
+
         Map<String, String> vtidMap = new HashMap<>();
         ls.stream().forEach(dto->{
-            String url = "<a href='fileAndVtid?vtid=" + dto.getVtId() + "&file=" + f + "'>"+ dto.getVtId() + "</a>"
+            int size = 0;
+            if(vtidGroupMap.get(dto.getVtId())!=null){
+                size = vtidGroupMap.get(dto.getVtId()).size();
+            }
+            String url = "<a href='fileAndVtid?vtid=" + dto.getVtId() + "&file=" + f + "'>"+ dto.getVtId() + "</a>&nbsp;&nbsp;&nbsp;" + size
                     + "<br>" + dto.getRule()
                     + "<br>" + dto.getDefectLevel()
                     + "<br>" + dto.getRuleDesc()
