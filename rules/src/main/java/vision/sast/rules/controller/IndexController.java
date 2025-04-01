@@ -11,7 +11,10 @@ import vision.sast.rules.RulesApplication;
 public class IndexController {
 
     public static String baseInfo(){
-        return RulesApplication.ISSUE_FILEPATH + "<br>" + "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size();
+        return RulesApplication.ISSUE_FILEPATH + "<br>"
+                + "issue 总数：" + RulesApplication.ISSUE_RESULT.getResult().size() + "<br>"
+                + "<a href='files'>文件集</a>"  + "<br>"
+                ;
     }
 
     @GetMapping("")
