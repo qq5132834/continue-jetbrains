@@ -17,7 +17,7 @@ public class SourceCodeController {
     private static Map<String, List<IssueDto>> issuesMap = new ConcurrentHashMap<>();
 
     @GetMapping("sourceCode")
-    public String fileAndVtid(String vtid, String file) {
+    public synchronized String fileAndVtid(String vtid, String file) {
         if (vtid == null || file == null) {
             try {
                 String key = vtid + ":" + file;
