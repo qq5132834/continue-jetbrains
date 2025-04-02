@@ -18,7 +18,7 @@ public class SourceCodeController {
 
     @GetMapping("sourceCode")
     public synchronized String fileAndVtid(String vtid, String file) {
-        if (vtid == null || file == null) {
+        if (vtid != null && file != null) {
             try {
                 String key = vtid + ":" + file;
                 if(issuesMap.get(key)==null){
