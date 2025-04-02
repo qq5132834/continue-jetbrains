@@ -47,7 +47,8 @@ public class RuleController {
         }
         StringBuilder stringBuilder = new StringBuilder();
         vtidFilesMap.get(vtid).stream().map(file->{
-            String str = "<a href='sourceCode?vtid=" + vtid + "&file=" + file + "'>" + file + "</a>";
+            int size = SourceCodeController.init(vtid, file);
+            String str = "<a href='sourceCode?vtid=" + vtid + "&file=" + file + "'>" + file + "</a> &nbsp;&nbsp;&nbsp;" + size;
             return str + "<br>";
         }).forEach(stringBuilder::append);
         return stringBuilder.toString();
