@@ -53,7 +53,8 @@ public class RuleController {
                     .stream().toList().stream().sorted().toList();
             vtidFilesMap.put(vtid, filepaths);
         }
-        StringBuilder stringBuilder = new StringBuilder();
+        IssueDto dto = issueMap.get(vtid);
+        StringBuilder stringBuilder = new StringBuilder(dto.getDefectLevel() + "/" + dto.getRuleDesc() + "<br>");
         vtidFilesMap.get(vtid).stream().map(file->{
             int size = SourceCodeController.init(vtid, file);
             String str = "<a href='sourceCode?vtid=" + vtid + "&file=" + file + "'>" + file + "</a> &nbsp;&nbsp;&nbsp;" + size;
