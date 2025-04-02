@@ -6,6 +6,7 @@ import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -15,13 +16,19 @@ public class RuleController {
 
     //规则总数
     public static List<String> ruleList;
+    public static Map<String, IssueDto> issueMap = new ConcurrentHashMap<>();
 
     //规则与issue集合关系
     public static ConcurrentHashMap<String, List<String>> vtidFilesMap = new ConcurrentHashMap<>();
 
     public synchronized static void loadInitList() {
         if(ruleList ==null){
-            Set<String> set = RulesApplication.ISSUE_RESULT.getResult().stream().map(dto->dto.getVtId()).collect(Collectors.toSet());
+            Set<String> set = RulesApplication.ISSUE_RESULT.getResult().stream().map(dto->{
+                if(issueMap.get(dto.getVtId())==null){
+                    issueMap.put(dto.getVtId(), dto);
+                }
+                return dto.getVtId();
+            }).collect(Collectors.toSet());
             ruleList = set.stream().toList().stream().sorted().toList();
         }
     }
@@ -31,7 +38,8 @@ public class RuleController {
         loadInitList();
         StringBuilder stringBuilder = new StringBuilder();
         ruleList.stream().map(e->{
-            String str = "<a href='rule?vtid="+e+"'>"+e+"</a>";
+            IssueDto dto = issueMap.get(e);
+            String str = "<a href='rule?vtid="+e+"'>"+e+"</a> &nbsp;&nbsp;&nbsp;" + dto.getDefectLevel() + "/" + dto.getRuleDesc();
             return str + "<br>";
         }).forEach(stringBuilder::append);
         return stringBuilder.toString();
