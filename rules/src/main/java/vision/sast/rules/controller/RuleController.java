@@ -17,7 +17,7 @@ public class RuleController {
     public static List<String> ruleList;
 
     //规则与issue集合关系
-    public static ConcurrentHashMap<String, List<IssueDto>> fileIssuesMap = new ConcurrentHashMap<>();
+    public static ConcurrentHashMap<String, List<String>> vtidFilesMap = new ConcurrentHashMap<>();
 
     public synchronized static void loadInitList() {
         if(ruleList ==null){
@@ -39,7 +39,18 @@ public class RuleController {
 
     @GetMapping("rule")
     public String rule(String vtid){
-        return vtid.toString();
+        if(vtidFilesMap.get(vtid)==null){
+            List<String> filepaths = RulesApplication.ISSUE_RESULT.getResult().stream().filter(dto->dto.getVtId().equals(vtid))
+                    .map(dto->dto.getFilePath()).collect(Collectors.toSet())
+                    .stream().toList().stream().sorted().toList();
+            vtidFilesMap.put(vtid, filepaths);
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        vtidFilesMap.get(vtid).stream().map(file->{
+            String str = "<a href='sourceCode?vtid=" + vtid + "&file=" + file + "'>" + file + "</a>";
+            return str + "<br>";
+        }).forEach(stringBuilder::append);
+        return stringBuilder.toString();
     }
 
 }
