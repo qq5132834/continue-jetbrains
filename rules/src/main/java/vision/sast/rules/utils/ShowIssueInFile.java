@@ -61,6 +61,7 @@ public class ShowIssueInFile {
                             + dto.getName() + "<br>"
                             + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType() + "/" + "<br>"
                             + dto.getRuleDesc() + "<br>"
+                            + dto.getIssueDesc() + "<br>"
                             + "</div>";
                     newLines.add(index, divStr);
                     insertTime++;
