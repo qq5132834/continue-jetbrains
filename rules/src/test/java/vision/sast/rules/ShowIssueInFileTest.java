@@ -11,6 +11,5 @@ public class ShowIssueInFileTest {
     public static void main(String[] args) throws Exception {
         String str = ShowIssueInFile.show("src/test/resources/test.c", new ArrayList<IssueDto>());
         System.out.println(str);
-        FileUtils.writeStringToFile(new File("src/test/resources/test.html"), str, "UTF-8");
     }
 }
