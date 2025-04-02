@@ -5,10 +5,7 @@ import vision.sast.rules.dto.IssueDto;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ShowIssueInFile {
@@ -18,17 +15,17 @@ public class ShowIssueInFile {
     public synchronized static void init(){
         try {
             File file = new File("escape.txt");
-            System.out.println(file.getName() + ", " + file.exists());
+            System.out.println(file.getAbsolutePath() + ", " + file.exists());
             if(file.exists()){
                 List<String> list = FileUtils.readLines(file,"utf-8");
                 list.stream().map(l->l.trim()).forEach(l->{
                     String[] ss = l.split(" ");
-                    if(ss!=null && ss.length == 2){
-                        map.put(ss[0], ss[1]);
+                    if(ss!=null && ss.length >= 2){
+                        map.put(ss[0], ss[ss.length-1]);
                     }
                 });
                 map.entrySet().forEach(entry->{
-                    System.out.println(entry.getKey() + ", " + entry.getValue());
+                    System.out.println(entry.getKey() + " " + entry.getValue());
                 });
             }
         }catch (Exception exception) {
