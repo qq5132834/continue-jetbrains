@@ -13,23 +13,24 @@ public class ShowIssueInFile {
 
     public static String show(String fileName, List<IssueDto> dtoList) {
         try {
+            System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
             List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
             StringBuilder sb = new StringBuilder("<ol>");
 
-            List<String> newLines = lines.stream().map(line->{
-                line = "<li>" +line + "</li>";
+            List<String> newLines = lines.stream().map(line -> {
+                line = "<li>" + line + "</li>";
                 return line;
             }).collect(Collectors.toList());
 
             int insertTime = 0;
-            for (IssueDto dto: sortedList) {
+            for (IssueDto dto : sortedList) {
                 int line = dto.getLine();
                 int index = line + insertTime;
-                if(index > 0){
+                if (index > 0) {
                     String divStr = "<div style='background-color: pink'>"
                             + dto.getName() + "<br>"
-                            + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType()  + "/" + "<br>"
+                            + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType() + "/" + "<br>"
                             + dto.getRuleDesc() + "<br>"
                             + "</div>";
                     newLines.add(index, divStr);
@@ -43,7 +44,7 @@ public class ShowIssueInFile {
             }
 
             sb.append("</ol>");
-            return "<html>" +
+            String html = "<html>" +
                     "<head>" +
 //                 "<link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css' rel='stylesheet'>" +
 //                 "<script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js'></script>" +
@@ -54,11 +55,12 @@ public class ShowIssueInFile {
                     "</code></pre>" +
                     "</body>" +
                     "</html>";
-        }
-        catch (Exception e) {
+            String htmlFileName = new File(fileName).getName() + ".html";
+            FileUtils.write(new File(htmlFileName), html, Charset.forName("utf-8"));
+            return html;
+        } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return e.getMessage();
         }
-
-
+    }
 }
