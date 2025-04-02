@@ -28,6 +28,9 @@ public class ShowIssueInFile {
                     System.out.println(entry.getKey() + " " + entry.getValue());
                 });
             }
+            else {
+                file.createNewFile();
+            }
         }catch (Exception exception) {
             exception.printStackTrace();
         }
