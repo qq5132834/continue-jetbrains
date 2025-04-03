@@ -4,12 +4,12 @@ import org.apache.commons.io.FileUtils;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ShowIssueInFile {
@@ -45,20 +45,13 @@ public class ShowIssueInFile {
             init();
             System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
-            List<String> lines = new ArrayList<>();
+//            List<String> lines = new ArrayList<>();
 
             String codeFormat = "utf-8";
             if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
                 codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
             }
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), codeFormat))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    lines.add(line);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            List<String> lines = FileUtils.readLines(new File(fileName),codeFormat);
             StringBuilder sb = new StringBuilder("<ol>");
 
             List<String> newLines = lines.stream().map(line -> {
