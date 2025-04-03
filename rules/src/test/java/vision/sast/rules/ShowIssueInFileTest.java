@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class ShowIssueInFileTest {
     public static void main(String[] args) throws Exception {
-        String str = ShowIssueInFile.show("src/test/resources/test.c", new ArrayList<IssueDto>());
+        String str = ShowIssueInFile.show("src/test/resources/ANSI_test.c", new ArrayList<IssueDto>());
         System.out.println(str);
     }
 }
