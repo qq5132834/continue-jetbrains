@@ -103,8 +103,8 @@ public class ShowIssueInFile {
                     "</code></pre>" +
                     "</body>" +
                     "</html>";
-            String htmlFileName = new File(fileName).getName() + ".html";
-            FileUtils.write(new File(htmlFileName), html, Charset.forName("utf-8"));
+            //String htmlFileName = new File(fileName).getName() + ".html";
+            //FileUtils.write(new File(htmlFileName), html, Charset.forName("utf-8"));
             return html;
         } catch (Exception e) {
             e.printStackTrace();
