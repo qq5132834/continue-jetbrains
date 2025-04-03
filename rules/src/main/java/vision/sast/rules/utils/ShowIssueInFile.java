@@ -1,6 +1,7 @@
 package vision.sast.rules.utils;
 
 import org.apache.commons.io.FileUtils;
+import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
 import java.io.BufferedReader;
@@ -45,8 +46,12 @@ public class ShowIssueInFile {
             System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
             List<String> lines = new ArrayList<>();
-            //List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "GBK"))) {
+
+            String codeFormat = "utf-8";
+            if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
+                codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
+            }
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), codeFormat))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     lines.add(line);
