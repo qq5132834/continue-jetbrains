@@ -1,6 +1,7 @@
 package vision.sast.rules.utils;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
@@ -16,33 +17,34 @@ public class ShowIssueInFile {
 
     private static Map<String, String> map = new HashMap<>();
 
-    public synchronized static void init(){
-        try {
-            File file = new File("escape.txt");
-            System.out.println(file.getAbsolutePath() + ", " + file.exists());
-            if(file.exists()){
-                List<String> list = FileUtils.readLines(file,"utf-8");
-                list.stream().map(l->l.trim()).forEach(l->{
-                    String[] ss = l.split(" ");
-                    if(ss!=null && ss.length >= 2){
-                        map.put(ss[0], ss[ss.length-1]);
-                    }
-                });
-                map.entrySet().forEach(entry->{
-                    System.out.println(entry.getKey() + " " + entry.getValue());
-                });
-            }
-            else {
-                file.createNewFile();
-            }
-        }catch (Exception exception) {
-            exception.printStackTrace();
-        }
-    }
+//    public synchronized static void init(){
+//    //字符转义
+//        try {
+//            File file = new File("escape.txt");
+//            System.out.println(file.getAbsolutePath() + ", " + file.exists());
+//            if(file.exists()){
+//                List<String> list = FileUtils.readLines(file,"utf-8");
+//                list.stream().map(l->l.trim()).forEach(l->{
+//                    String[] ss = l.split(" ");
+//                    if(ss!=null && ss.length >= 2){
+//                        map.put(ss[0], ss[ss.length-1]);
+//                    }
+//                });
+//                map.entrySet().forEach(entry->{
+//                    System.out.println(entry.getKey() + " " + entry.getValue());
+//                });
+//            }
+//            else {
+//                file.createNewFile();
+//            }
+//        }catch (Exception exception) {
+//            exception.printStackTrace();
+//        }
+//    }
 
     public static String show(String fileName, List<IssueDto> dtoList) {
         try {
-            init();
+//            init();
             System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
 //            List<String> lines = new ArrayList<>();
@@ -52,15 +54,21 @@ public class ShowIssueInFile {
                 codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
             }
             List<String> lines = FileUtils.readLines(new File(fileName),codeFormat);
-            StringBuilder sb = new StringBuilder("<ol>");
-
-            List<String> newLines = lines.stream().map(line -> {
-                for(Map.Entry<String, String> entry: map.entrySet()){
-                    line = line.replaceAll(entry.getKey(), entry.getValue());
-                }
+            List<String> newLines = lines.stream().map(line->{
+                line = StringEscapeUtils.escapeHtml4(line);
                 line = "<li>" + line + "</li>";
                 return line;
             }).collect(Collectors.toList());
+
+            StringBuilder sb = new StringBuilder("<ol>");
+
+//            List<String> newLines = lines.stream().map(line -> {
+//                for(Map.Entry<String, String> entry: map.entrySet()){
+//                    line = line.replaceAll(entry.getKey(), entry.getValue());
+//                }
+//                line = "<li>" + line + "</li>";
+//                return line;
+//            }).collect(Collectors.toList());
 
             int insertTime = 0;
             for (IssueDto dto : sortedList) {
