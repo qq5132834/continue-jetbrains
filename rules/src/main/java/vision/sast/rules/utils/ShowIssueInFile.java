@@ -3,7 +3,10 @@ package vision.sast.rules.utils;
 import org.apache.commons.io.FileUtils;
 import vision.sast.rules.dto.IssueDto;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -41,7 +44,16 @@ public class ShowIssueInFile {
             init();
             System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
-            List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
+            List<String> lines = new ArrayList<>();
+            //List<String> lines = FileUtils.readLines(new File(fileName), Charset.forName("utf-8"));
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName), "GBK"))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    lines.add(line);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             StringBuilder sb = new StringBuilder("<ol>");
 
             List<String> newLines = lines.stream().map(line -> {

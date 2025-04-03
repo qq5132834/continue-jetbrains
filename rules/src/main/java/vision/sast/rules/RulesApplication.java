@@ -7,13 +7,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import vision.sast.rules.dto.IssueResult;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.Properties;
 
 @SpringBootApplication
 public class RulesApplication {
 
     public static String ISSUE_FILEPATH;
     public static IssueResult ISSUE_RESULT;
+    public static Properties PROPERTIES = new Properties();
 
     public static void main(String[] args) {
         if(args!=null && args.length>0){
@@ -24,8 +29,23 @@ public class RulesApplication {
             System.out.println("issue result is null");
             System.exit(0);
         }
+        loadProperties();
         SpringApplication.run(RulesApplication.class, args);
 
+    }
+
+    public static void loadProperties() {
+        try {
+            File propertiesFile = new File("config.properties");
+            if(!propertiesFile.exists()){
+                propertiesFile.createNewFile();
+            }
+            InputStream input = new FileInputStream(propertiesFile);
+            PROPERTIES.load(input);
+            System.out.println(PROPERTIES);
+        }catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     public static IssueResult buildIssueResult(File file){
@@ -41,6 +61,10 @@ public class RulesApplication {
             catch (Exception e){
                 e.printStackTrace();
             }
+        }
+        else {
+            System.out.println("issue file is not exist");
+            System.exit(0);
         }
         return new IssueResult();
     }
