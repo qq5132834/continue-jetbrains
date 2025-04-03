@@ -18,10 +18,10 @@ public class IndexController {
                 ;
     }
 
-    @GetMapping("")
-    public  String index(){
-        return baseInfo();
-    }
+//    @GetMapping("")
+//    public  String index(){
+//        return baseInfo();
+//    }
 
     @GetMapping("index")
     public  String index1(){
