@@ -47,7 +47,7 @@ public class ShowIssueInFile {
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
 //            List<String> lines = new ArrayList<>();
 
-            String codeFormat = "utf-8";
+            String codeFormat = "GBK";
             if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
                 codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
             }
