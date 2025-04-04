@@ -10,13 +10,13 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import javax.swing.*;
 import java.awt.*;
 
-public class CodeCatEditor {
+public class CodeEditor {
 
     public static void main(String[] args) {
         System.setProperty("java.awt.headless", "false");
         SwingUtilities.invokeLater(()->{
             String code = getCatCode();
-            CodeCatEditor.createAndShowGUI(code);
+            CodeEditor.createAndShowGUI(code);
         });
 
 

@@ -5,10 +5,13 @@ import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
 import org.fife.ui.rsyntaxtextarea.TokenMaker;
 import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
 import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
-import vision.sast.rules.utils.CodeCatEditor;
+import vision.sast.rules.utils.CodeEditor;
 
 import javax.swing.text.Segment;
 
+/***
+ * 可视化代码编辑器
+ */
 public class CodeEditorGUITest {
 
     public static void main(String[] args) {
@@ -19,7 +22,7 @@ public class CodeEditorGUITest {
 //        });
 
         String code = getCatCode();
-        CodeCatEditor.createAndShowGUI(code);
+        CodeEditor.createAndShowGUI(code);
 
         TokenMaker tokenMaker;
         TokenMakerFactory tokenMakerFactory;
