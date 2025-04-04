@@ -21,6 +21,10 @@ public class RulesApplication {
     public static Properties PROPERTIES = new Properties();
 
     public static void main(String[] args) {
+
+        System.setProperty("java.awt.headless", "true");
+
+
         if(args!=null && args.length>0){
             String issuePath = args[0];
             ISSUE_RESULT = buildIssueResult(new File(issuePath));

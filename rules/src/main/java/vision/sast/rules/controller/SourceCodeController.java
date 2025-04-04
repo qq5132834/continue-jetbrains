@@ -36,7 +36,7 @@ public class SourceCodeController {
 
     @GetMapping("sourceCodeEdit")
     public synchronized String sourceCodeEdit(String file) {
-
+        System.setProperty("java.awt.headless", "true");
         SwingUtilities.invokeLater(()->{
             try {
                 final String f = file;

@@ -13,7 +13,7 @@ import java.awt.*;
 public class CodeCatEditor {
 
     public static void main(String[] args) {
-
+        System.setProperty("java.awt.headless", "false");
         SwingUtilities.invokeLater(()->{
             String code = getCatCode();
             CodeCatEditor.createAndShowGUI(code);
