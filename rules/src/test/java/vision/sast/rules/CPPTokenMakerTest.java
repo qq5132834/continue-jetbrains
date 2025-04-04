@@ -15,28 +15,32 @@ import java.util.Arrays;
 public class CPPTokenMakerTest {
     public static void main(String[] args) throws Exception {
         String code = """
-                #include <stdio.h>
-                int main()
-                {
-                    int a = 1;
-                    printf("%d",a);
-                    return 1;
-                }
+                /* SDSLib 2.0 -- A C dynamic strings library
+                 *
+                 * Copyright (c) 2006-2015, Salvatore Sanfilippo <antirez at gmail dot com>
+                 * Copyright (c) 2015, Oran Agra
+                 * Copyright (c) 2015, Redis Labs, Inc
+                 * All rights reserved. */
+                 int a = 0;
+                 // over
                 """;
-        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/hiredis/sds.h"), "UTF-8");
+//        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/hiredis/sds.h"), "UTF-8");
         // TokenTypes.java 类型
         TokenTypes tokenTypes;
-        Arrays.stream(code.split("\n")).forEach(line->{
+
+        int tokenType = TokenTypes.NULL;
+        for(String line : code.split("\n")) {
             CPPTokenMakerTest cppTokenMakerTest = new CPPTokenMakerTest();
             Segment segment = cppTokenMakerTest.createSegment(line);
             TokenMaker tm = new CPlusPlusTokenMaker();
-            Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
-            if (token.isComment()) {
-                System.out.println("注释");
+            Token token = tm.getTokenList(segment, tokenType, 0);
+            if(token.getType() == TokenTypes.COMMENT_MULTILINE){
+                System.out.println("注释, " + token.getType());
             }
-            cppTokenMakerTest.printToken(token);
+
+            tokenType = cppTokenMakerTest.printToken(token);
 //            System.out.println(token);
-        });
+        }
 
     }
 
@@ -44,7 +48,7 @@ public class CPPTokenMakerTest {
         return new Segment(code.toCharArray(), 0, code.length());
     }
 
-    protected void printToken(Token token){
+    protected int printToken(Token token){
         Token next = token;
 
         while (next !=null && next.getType() != TokenTypes.NULL) {
@@ -58,7 +62,23 @@ public class CPPTokenMakerTest {
 //            System.out.print(tokenImage);
             next = next.getNextToken();
         }
+
         System.out.println();
+        if(token.getType() == TokenTypes.COMMENT_MULTILINE && token.getNextToken()==null){
+            return TokenTypes.COMMENT_MULTILINE;
+        }
+        else if(token.getType() == TokenTypes.COMMENT_MULTILINE
+                && token.getNextToken()!=null
+                && token.getNextToken().getLexeme()!=null
+                && token.getNextToken().getLexeme().equals("*/")){
+            return TokenTypes.COMMENT_MULTILINE;
+        }
+        else {
+            return TokenTypes.NULL;
+        }
+
+
+
     }
 
 }
