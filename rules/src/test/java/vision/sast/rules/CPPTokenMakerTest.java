@@ -5,6 +5,7 @@ import org.fife.ui.rsyntaxtextarea.TokenImpl;
 import org.fife.ui.rsyntaxtextarea.TokenMaker;
 import org.fife.ui.rsyntaxtextarea.TokenTypes;
 import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
+import vision.sast.rules.utils.TokenTypeUtil;
 
 import javax.swing.text.Segment;
 import java.util.Arrays;
@@ -41,16 +42,12 @@ public class CPPTokenMakerTest {
         String text = new String(next.getTextArray());
 
         while (next !=null && next.getType() != TokenTypes.NULL) {
-            TokenImpl tokenImpl = (TokenImpl) next;
 
-            int offset = tokenImpl.getOffset();
-            int len = tokenImpl.length();
-            int type = tokenImpl.getType();
-            //String text1 = new String(next.getTextArray());
-            String text1 = new String(tokenImpl.text);
-            System.out.print(text1.substring(offset, offset + len));
-//            String tokenImage = text.substring(offset, len);
-//            System.out.print(tokenImage);
+            int offset = next.getOffset();
+            int len = next.length();
+            int type = next.getType();
+            //System.out.println(TokenTypeUtil.tokenMap.get(type));
+            System.out.print(text.substring(offset, offset + len));
             next = next.getNextToken();
         }
         System.out.println();
