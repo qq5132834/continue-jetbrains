@@ -14,8 +14,11 @@ public class CodeCatEditor {
 
     public static void main(String[] args) {
 
-        String code = getCatCode();
-        CodeCatEditor.createAndShowGUI(code);
+        SwingUtilities.invokeLater(()->{
+            String code = getCatCode();
+            CodeCatEditor.createAndShowGUI(code);
+        });
+
 
         TokenMaker tokenMaker;
         TokenMakerFactory tokenMakerFactory;
