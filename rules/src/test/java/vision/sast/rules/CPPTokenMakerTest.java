@@ -48,8 +48,8 @@ public class CPPTokenMakerTest {
             int len = next.length();
             int type = next.getType();
             String tokenImage = text.substring(offset, offset + len);
-            System.out.println(type + " " + tokenImage);
-//            System.out.print(TokenTypeUtil.getHtml(type, tokenImage));
+//            System.out.println(type + " " + tokenImage);
+            System.out.print(TokenTypeUtil.getHtml(type, tokenImage));
 //            System.out.print(tokenImage);
             next = next.getNextToken();
         }

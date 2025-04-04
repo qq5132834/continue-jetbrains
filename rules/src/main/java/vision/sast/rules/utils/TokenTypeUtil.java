@@ -1,5 +1,6 @@
 package vision.sast.rules.utils;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.fife.ui.rsyntaxtextarea.TokenTypes;
 
 import java.util.HashMap;
@@ -61,6 +62,7 @@ public class TokenTypeUtil {
 
     public static String getHtml(Integer type, String text) {
         String value = tokenMap.get(type);
+        text = StringEscapeUtils.escapeHtml4(text);
         if(value.equals(NULL)){
             return "<span class = 'token punctuation'>" + text + "</span>";
         }
