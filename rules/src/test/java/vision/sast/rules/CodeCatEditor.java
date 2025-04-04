@@ -22,7 +22,7 @@ public class CodeCatEditor {
     }
 
     public static void createAndShowGUI(String text) {
-        JFrame frame = new JFrame("Code Cat Editor");
+        JFrame frame = new JFrame("Editor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 500);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
