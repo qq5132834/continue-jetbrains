@@ -1,11 +1,14 @@
 package vision.sast.rules;
 
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
 import org.fife.ui.rsyntaxtextarea.TokenMaker;
 import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
 import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
 import vision.sast.rules.utils.CodeCatEditor;
 
 import javax.swing.*;
+import javax.swing.text.Segment;
 
 public class CodeCatEditorTest {
 
@@ -22,6 +25,21 @@ public class CodeCatEditorTest {
         TokenMaker tokenMaker;
         TokenMakerFactory tokenMakerFactory;
         CPlusPlusTokenMaker cPlusPlusTokenMaker;
+        SyntaxScheme syntaxScheme;
+//        syntaxScheme.getStyleCount();
+        SyntaxConstants syntaxConstants;
+        Segment segment;
+//        STYLE_COMMENT_EOL;
+//        STYLE_LITERAL_STRING_DOUBLE_QUOTE;
+//        STYLE_LITERAL_CHAR;
+//        STYLE_LITERAL_BACKQUOTE;
+//        STYLE_LITERAL_NUMBER_DECIMAL_INT;
+//        STYLE_LITERAL_NUMBER_FLOAT;
+//        STYLE_LITERAL_NUMBER_HEXADECIMAL;
+//        STYLE_LITERAL_BOOLEAN;
+//        STYLE_IDENTIFIER;
+//        STYLE_FUNCTION;
+//        STYLE_PREPROCESSOR;
 
     }
 
