@@ -1,13 +1,30 @@
+li {
+    margin-top: 0px;
+    margin-bottom: 0px; /* 或你想要的间距 */
+}
+
 span {
     color: black;
 
     font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', Consolas, 'Courier New', monospace;
     font-size: 14px;
-    /*background-color: #f5f5f5;*/
+    background-color: #f5f5f5;
 
 }
 
+span.token.hl_1 {
+    color: green;
+}
 span.token.hl_2 {
+    color: green;
+}
+span.token.hl_3 {
+    color: green;
+}
+span.token.hl_4 {
+    color: green;
+}
+span.token.hl_5 {
     color: green;
 }
 

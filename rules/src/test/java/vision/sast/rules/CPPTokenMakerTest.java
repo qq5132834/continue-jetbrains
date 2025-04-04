@@ -31,6 +31,9 @@ public class CPPTokenMakerTest {
             Segment segment = cppTokenMakerTest.createSegment(line);
             TokenMaker tm = new CPlusPlusTokenMaker();
             Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
+            if (token.isComment()) {
+                System.out.println("注释");
+            }
             cppTokenMakerTest.printToken(token);
 //            System.out.println(token);
         });
