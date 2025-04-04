@@ -11,10 +11,13 @@ public class CodeCatEditorTest {
 
     public static void main(String[] args) {
 
-        SwingUtilities.invokeLater(()->{
-            String code = getCatCode();
-            CodeCatEditor.createAndShowGUI(code);
-        });
+//        SwingUtilities.invokeLater(()->{
+//            String code = getCatCode();
+//            CodeCatEditor.createAndShowGUI(code);
+//        });
+
+        String code = getCatCode();
+        CodeCatEditor.createAndShowGUI(code);
 
         TokenMaker tokenMaker;
         TokenMakerFactory tokenMakerFactory;

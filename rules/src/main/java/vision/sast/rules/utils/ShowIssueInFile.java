@@ -34,19 +34,13 @@ public class ShowIssueInFile {
 
     public static void edit(String fileName, List<IssueDto> dtoList){
         try {
-            SwingUtilities.invokeLater(()->{
-                try {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    List<String>  lines = openFile(fileName);
-                    lines.stream().forEach(l->{
-                        stringBuilder.append(l);
-                        stringBuilder.append("\n");
-                    });
-                    CodeCatEditor.createAndShowGUI(stringBuilder.toString());
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
+            StringBuilder stringBuilder = new StringBuilder();
+            List<String>  lines = openFile(fileName);
+            lines.stream().forEach(l->{
+                stringBuilder.append(l);
+                stringBuilder.append("\n");
             });
+            CodeCatEditor.createAndShowGUI(stringBuilder.toString());
         }catch (Exception exception) {
             exception.printStackTrace();
         }
