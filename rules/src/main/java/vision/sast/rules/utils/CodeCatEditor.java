@@ -1,4 +1,4 @@
-package vision.sast.rules;
+package vision.sast.rules.utils;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;

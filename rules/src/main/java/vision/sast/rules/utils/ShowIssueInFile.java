@@ -5,6 +5,7 @@ import org.apache.commons.text.StringEscapeUtils;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -29,6 +30,26 @@ public class ShowIssueInFile {
 
         return lines;
 
+    }
+
+    public static void edit(String fileName, List<IssueDto> dtoList){
+        try {
+            SwingUtilities.invokeLater(()->{
+                try {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    List<String>  lines = openFile(fileName);
+                    lines.stream().forEach(l->{
+                        stringBuilder.append(l);
+                        stringBuilder.append("\n");
+                    });
+                    CodeCatEditor.createAndShowGUI(stringBuilder.toString());
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     public static String show(String fileName, List<IssueDto> dtoList) {
