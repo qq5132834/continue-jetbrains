@@ -10,38 +10,39 @@ import java.util.List;
 
 public class HighLightUtil {
 
+    private int tokenType = TokenTypes.NULL;
+
+    public HighLightUtil(){
+
+    }
+
     public static String highlightFile(String file) throws Exception {
         StringBuilder sb = new StringBuilder();
         List<String> lines = SourceCodeUtil.openFile(file);
+        HighLightUtil highlighterUtil = new HighLightUtil();
         lines.stream().forEach(line->{
-//            Segment segment = createSegment(line);
-//            TokenMaker tm = new CPlusPlusTokenMaker();
-//            Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
-//            StringBuilder stringBuilder = printToken(token);
-//            stringBuilder.append("\n");
-//            sb.append(stringBuilder.toString());
 
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(highlightLine(line));
+            stringBuilder.append(highlighterUtil.highlightLine(line));
             stringBuilder.append("\n");
             sb.append(stringBuilder.toString());
         });
         return sb.toString();
     }
 
-    public static String highlightLine(String line) {
-        Segment segment = createSegment(line);
+    public String highlightLine(String line) {
+        Segment segment = this.createSegment(line);
         TokenMaker tm = new CPlusPlusTokenMaker();
         Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
-        StringBuilder stringBuilder = printToken(token);
+        StringBuilder stringBuilder = this.printToken(token);
         return stringBuilder.toString();
     }
 
-    private static Segment createSegment(String code) {
+    private Segment createSegment(String code) {
         return new Segment(code.toCharArray(), 0, code.length());
     }
 
-    private static StringBuilder printToken(Token token){
+    private StringBuilder printToken(Token token){
         Token next = token;
         StringBuilder stringBuilder = new StringBuilder();
         while (next !=null && next.getType() != TokenTypes.NULL) {

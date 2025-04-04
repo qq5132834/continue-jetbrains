@@ -36,9 +36,10 @@ public class SourceCodeUtil {
         List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
 
         List<String> lines = openFile(fileName);
+        HighLightUtil highlighterUtil = new HighLightUtil();
         List<String> newLines = lines.stream().map(line->{
 //            line = StringEscapeUtils.escapeHtml4(line);
-            line = HighLightUtil.highlightLine(line);
+            line = highlighterUtil.highlightLine(line);
             line = "<li>" + line + "</li>";
 
             return line;

@@ -23,6 +23,9 @@ public class CPPTokenMakerTest {
                  * All rights reserved. */
                  int a = 0;
                  // over
+                 int b = 1;
+                 /* 注释一下 */
+                 in c = 3;
                 """;
 //        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/hiredis/sds.h"), "UTF-8");
         // TokenTypes.java 类型
@@ -71,7 +74,7 @@ public class CPPTokenMakerTest {
                 && token.getNextToken()!=null
                 && token.getNextToken().getLexeme()!=null
                 && token.getNextToken().getLexeme().equals("*/")){
-            return TokenTypes.COMMENT_MULTILINE;
+            return TokenTypes.NULL;
         }
         else {
             return TokenTypes.NULL;
