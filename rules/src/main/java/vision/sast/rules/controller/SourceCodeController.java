@@ -32,8 +32,14 @@ public class SourceCodeController {
 
     @GetMapping("edit")
     public synchronized String edit(String file) {
-        ShowIssueInFile.edit(file);
-        return "editing.";
+        try {
+            ShowIssueInFile.edit(file);
+            return "editing.";
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 
     @GetMapping("sourceCode")
