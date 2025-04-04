@@ -33,7 +33,7 @@ public class HighLightUtil {
     public String highlightLine(String line) {
         Segment segment = this.createSegment(line);
         TokenMaker tm = new CPlusPlusTokenMaker();
-        Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
+        Token token = tm.getTokenList(segment, this.tokenType, 0);
         StringBuilder stringBuilder = this.printToken(token);
         return stringBuilder.toString();
     }
@@ -57,6 +57,20 @@ public class HighLightUtil {
             stringBuilder.append(htmlTag);
             next = next.getNextToken();
         }
+
+        if(token.getType() == TokenTypes.COMMENT_MULTILINE && token.getNextToken()==null){
+            this.tokenType = TokenTypes.COMMENT_MULTILINE;
+        }
+        else if(token.getType() == TokenTypes.COMMENT_MULTILINE
+                && token.getNextToken()!=null
+                && token.getNextToken().getLexeme()!=null
+                && token.getNextToken().getLexeme().equals("*/")){
+            this.tokenType = TokenTypes.NULL;
+        }
+        else {
+            this.tokenType = TokenTypes.NULL;
+        }
+
         return stringBuilder;
     }
 
