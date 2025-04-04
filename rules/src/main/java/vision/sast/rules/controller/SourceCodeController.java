@@ -18,7 +18,6 @@ import java.util.concurrent.Executors;
 public class SourceCodeController {
 
     private static Map<String, List<IssueDto>> issuesMap = new ConcurrentHashMap<>();
-    private static ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     private static String getKey(String vtid, String file){
         String key = vtid + ":" + file;
@@ -34,28 +33,8 @@ public class SourceCodeController {
         return issuesMap.get(key).size();
     }
 
-    @GetMapping("sourceCodeEdit")
-    public synchronized String sourceCodeEdit(String file) {
-        System.setProperty("java.awt.headless", "true");
-        SwingUtilities.invokeLater(()->{
-            try {
-                final String f = file;
-                ShowIssueInFile.edit(f);
-            }
-            catch(Exception e){
-                e.printStackTrace();
-            }
-        });
-
-//        executorService.execute(()->{
-//            try {
-//                final String f = file;
-//                ShowIssueInFile.edit(f);
-//            }
-//            catch(Exception e){
-//                e.printStackTrace();
-//            }
-//        });
+    @GetMapping("highLight")
+    public synchronized String highLight(String file) {
 
         return "editing.";
     }

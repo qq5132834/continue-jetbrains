@@ -32,15 +32,15 @@ public class ShowIssueInFile {
 
     }
 
-    public static void edit(String fileName) throws Exception {
-        StringBuilder stringBuilder = new StringBuilder();
-        List<String>  lines = openFile(fileName);
-        lines.stream().forEach(l->{
-            stringBuilder.append(l);
-            stringBuilder.append("\n");
-        });
-        CodeCatEditor.createAndShowGUI(stringBuilder.toString());
-    }
+//    public static void edit(String fileName) throws Exception {
+//        StringBuilder stringBuilder = new StringBuilder();
+//        List<String>  lines = openFile(fileName);
+//        lines.stream().forEach(l->{
+//            stringBuilder.append(l);
+//            stringBuilder.append("\n");
+//        });
+//        CodeCatEditor.createAndShowGUI(stringBuilder.toString());
+//    }
 
     public static String show(String fileName, List<IssueDto> dtoList) {
         try {
