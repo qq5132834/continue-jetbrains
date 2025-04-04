@@ -12,7 +12,7 @@ public class TokenTypeUtil {
         tokenMap.put(TokenTypes.COMMENT_EOL, "NULL");
         tokenMap.put(TokenTypes.COMMENT_MULTILINE, "NULL");
         tokenMap.put(TokenTypes.COMMENT_DOCUMENTATION, "NULL");
-        tokenMap.put(TokenTypes.COMMENT_KEYWORD, "NULL");
+        tokenMap.put(TokenTypes.COMMENT_KEYWORD, "keyword");
 
         tokenMap.put(TokenTypes.COMMENT_MARKUP, "NULL");
         tokenMap.put(TokenTypes.RESERVED_WORD, "NULL");
@@ -56,5 +56,15 @@ public class TokenTypeUtil {
         tokenMap.put(TokenTypes.ERROR_CHAR, "NULL");
         tokenMap.put(TokenTypes.DEFAULT_NUM_TOKEN_TYPES, "NULL");
 
+    }
+
+    public static String getHtml(Integer type, String text) {
+        String value = tokenMap.get(type);
+        if(value.equals("NULL")){
+            return "<span class = 'token punctuation'>" + text + "</span>";
+        }
+        else {
+            return "<span class = 'token " + value + "'>" + text + "</span>";
+        }
     }
 }
