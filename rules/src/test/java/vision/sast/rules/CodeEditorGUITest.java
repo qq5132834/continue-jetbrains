@@ -7,10 +7,9 @@ import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
 import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
 import vision.sast.rules.utils.CodeCatEditor;
 
-import javax.swing.*;
 import javax.swing.text.Segment;
 
-public class CodeCatEditorTest {
+public class CodeEditorGUITest {
 
     public static void main(String[] args) {
 
