@@ -63,11 +63,12 @@ public class TokenTypeUtil {
     public static String getHtml(Integer type, String text) {
         String value = tokenMap.get(type);
         text = StringEscapeUtils.escapeHtml4(text);
-        if(value.equals(NULL)){
-            return "<span class = 'token punctuation'>" + text + "</span>";
-        }
-        else {
-            return "<span class = 'token " + value + "'>" + text + "</span>";
-        }
+//        if(value.equals(NULL)){
+//            return "<span class = 'token punctuation'>" + text + "</span>";
+//        }
+//        else {
+//            return "<span class = 'token " + value + "'>" + text + "</span>";
+//        }
+        return "<span class = 'token hl_"+type+"'>" + text + "</span>";
     }
 }

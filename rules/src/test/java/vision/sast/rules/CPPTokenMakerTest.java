@@ -1,5 +1,6 @@
 package vision.sast.rules;
 
+import org.apache.commons.io.FileUtils;
 import org.fife.ui.rsyntaxtextarea.Token;
 import org.fife.ui.rsyntaxtextarea.TokenImpl;
 import org.fife.ui.rsyntaxtextarea.TokenMaker;
@@ -8,10 +9,11 @@ import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
 import vision.sast.rules.utils.TokenTypeUtil;
 
 import javax.swing.text.Segment;
+import java.io.File;
 import java.util.Arrays;
 
 public class CPPTokenMakerTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         String code = """
                 #include <stdio.h>
                 int main()
@@ -21,6 +23,7 @@ public class CPPTokenMakerTest {
                     return 1;
                 }
                 """;
+        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/fast_float/fast_float_strtod.h"), "UTF-8");
         // TokenTypes.java 类型
         TokenTypes tokenTypes;
         Arrays.stream(code.split("\n")).forEach(line->{
@@ -40,10 +43,9 @@ public class CPPTokenMakerTest {
 
     protected void printToken(Token token){
         Token next = token;
-        String text = new String(next.getTextArray());
 
         while (next !=null && next.getType() != TokenTypes.NULL) {
-
+            String text = new String(next.getTextArray());
             int offset = next.getOffset();
             int len = next.length();
             int type = next.getType();
