@@ -12,7 +12,7 @@ public class HighLightUtil {
 
     public static String highlight(String file) throws Exception {
         StringBuilder sb = new StringBuilder();
-        List<String> lines = ShowIssueInFile.openFile(file);
+        List<String> lines = SourceCodeUtil.openFile(file);
         lines.stream().forEach(line->{
             Segment segment = createSegment(line);
             TokenMaker tm = new CPlusPlusTokenMaker();

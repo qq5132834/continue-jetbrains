@@ -5,14 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
-import vision.sast.rules.utils.ShowIssueInFile;
+import vision.sast.rules.utils.SourceCodeUtil;
 
-import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @RestController
 public class SourceCodeController {
@@ -40,7 +37,7 @@ public class SourceCodeController {
                 int size = init(vtid, file);
                 String key = getKey(vtid, file);
                 List<IssueDto> issueDtos = issuesMap.get(key);
-                String html = ShowIssueInFile.show(file, issueDtos);
+                String html = SourceCodeUtil.show(file, issueDtos);
                 html = "<html>" +
                        "<head>" +
                        "</head>" +

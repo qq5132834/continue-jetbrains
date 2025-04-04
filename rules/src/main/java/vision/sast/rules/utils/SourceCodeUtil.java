@@ -5,19 +5,17 @@ import org.apache.commons.text.StringEscapeUtils;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
-public class ShowIssueInFile {
+public class SourceCodeUtil {
 
 
+    /***
+     * 读取文件
+     */
      public static List<String> openFile(String fileName) throws Exception {
 
         String codeFormat = "GBK";
