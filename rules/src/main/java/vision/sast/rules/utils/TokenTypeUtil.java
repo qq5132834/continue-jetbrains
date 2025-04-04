@@ -16,8 +16,8 @@ public class TokenTypeUtil {
         tokenMap.put(TokenTypes.COMMENT_KEYWORD, "keyword");
 
         tokenMap.put(TokenTypes.COMMENT_MARKUP, NULL); //5
-        tokenMap.put(TokenTypes.RESERVED_WORD, NULL);
-        tokenMap.put(TokenTypes.RESERVED_WORD_2, NULL);
+        tokenMap.put(TokenTypes.RESERVED_WORD, "keyword");
+        tokenMap.put(TokenTypes.RESERVED_WORD_2, "keyword");
         tokenMap.put(TokenTypes.FUNCTION, "function"); //函数
         tokenMap.put(TokenTypes.LITERAL_BOOLEAN, NULL);
 
