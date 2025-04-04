@@ -32,7 +32,7 @@ public class ShowIssueInFile {
 
     }
 
-    public static void edit(String fileName, List<IssueDto> dtoList){
+    public static void edit(String fileName){
         try {
             StringBuilder stringBuilder = new StringBuilder();
             List<String>  lines = openFile(fileName);

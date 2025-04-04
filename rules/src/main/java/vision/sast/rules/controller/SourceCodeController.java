@@ -30,6 +30,12 @@ public class SourceCodeController {
         return issuesMap.get(key).size();
     }
 
+    @GetMapping("edit")
+    public synchronized String edit(String file) {
+        ShowIssueInFile.edit(file);
+        return "editing.";
+    }
+
     @GetMapping("sourceCode")
     public synchronized String fileAndVtid(String vtid, String file) {
         if (vtid != null && file != null) {
