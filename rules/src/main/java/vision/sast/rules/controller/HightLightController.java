@@ -2,7 +2,9 @@ package vision.sast.rules.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import vision.sast.rules.RulesApplication;
 import vision.sast.rules.utils.HighLightUtil;
+import vision.sast.rules.utils.PropertiesKey;
 
 @RestController
 public class HightLightController {

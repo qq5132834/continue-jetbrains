@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
+import vision.sast.rules.utils.PropertiesKey;
 import vision.sast.rules.utils.SourceCodeUtil;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class SourceCodeController {
                 String key = getKey(vtid, file);
                 List<IssueDto> issueDtos = issuesMap.get(key);
                 String html = SourceCodeUtil.show(file, issueDtos);
+
                 html = "<html>" +
                        "<head>" +
                         "<link rel='stylesheet' href='cpp.css'>" +

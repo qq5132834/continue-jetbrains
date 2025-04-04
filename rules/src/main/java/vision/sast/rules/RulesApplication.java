@@ -22,7 +22,7 @@ public class RulesApplication {
 
     public static void main(String[] args) {
 
-        System.setProperty("java.awt.headless", "true");
+        //System.setProperty("java.awt.headless", "true");
 
 
         if(args!=null && args.length>0){
