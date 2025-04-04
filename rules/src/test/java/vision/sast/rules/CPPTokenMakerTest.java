@@ -23,7 +23,7 @@ public class CPPTokenMakerTest {
                     return 1;
                 }
                 """;
-        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/fast_float/fast_float_strtod.h"), "UTF-8");
+        code = FileUtils.readFileToString(new File("C:/Users/5132/Desktop/redis/redis-unstable/redis-unstable/deps/hiredis/sds.h"), "UTF-8");
         // TokenTypes.java 类型
         TokenTypes tokenTypes;
         Arrays.stream(code.split("\n")).forEach(line->{

@@ -1,5 +1,10 @@
 span {
     color: black;
+
+    font-family: 'Fira Code', 'JetBrains Mono', 'Source Code Pro', Consolas, 'Courier New', monospace;
+    font-size: 14px;
+    /*background-color: #f5f5f5;*/
+
 }
 
 span.token.hl_2 {
@@ -8,6 +13,10 @@ span.token.hl_2 {
 
 span.token.hl_6 {
     color: blue;
+}
+
+span.token.hl_10 {
+    color: rebeccapurple;
 }
 
 span.token.hl_13 {
