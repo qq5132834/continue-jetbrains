@@ -7,14 +7,18 @@ import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 import vision.sast.rules.utils.ShowIssueInFile;
 
+import javax.swing.*;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @RestController
 public class SourceCodeController {
 
     private static Map<String, List<IssueDto>> issuesMap = new ConcurrentHashMap<>();
+    private static ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     private static String getKey(String vtid, String file){
         String key = vtid + ":" + file;
@@ -30,20 +34,34 @@ public class SourceCodeController {
         return issuesMap.get(key).size();
     }
 
-    @GetMapping("edit")
-    public synchronized String edit(String file) {
-        try {
-            ShowIssueInFile.edit(file);
-            return "editing.";
-        }
-        catch(Exception e){
-            e.printStackTrace();
-            return e.getMessage();
-        }
+    @GetMapping("sourceCodeEdit")
+    public synchronized String sourceCodeEdit(String file) {
+
+        SwingUtilities.invokeLater(()->{
+            try {
+                final String f = file;
+                ShowIssueInFile.edit(f);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        });
+
+//        executorService.execute(()->{
+//            try {
+//                final String f = file;
+//                ShowIssueInFile.edit(f);
+//            }
+//            catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        });
+
+        return "editing.";
     }
 
     @GetMapping("sourceCode")
-    public synchronized String fileAndVtid(String vtid, String file) {
+    public synchronized String sourceCode(String vtid, String file) {
         if (vtid != null && file != null) {
             try {
                 int size = init(vtid, file);
