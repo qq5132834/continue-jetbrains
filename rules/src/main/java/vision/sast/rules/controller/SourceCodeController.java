@@ -40,7 +40,18 @@ public class SourceCodeController {
                 int size = init(vtid, file);
                 String key = getKey(vtid, file);
                 List<IssueDto> issueDtos = issuesMap.get(key);
-                return ShowIssueInFile.show(file, issueDtos);
+                String html = ShowIssueInFile.show(file, issueDtos);
+                html = "<html>" +
+                       "<head>" +
+                       "</head>" +
+                       "<body>" +
+                       "<a href='highLight?file=" + file + "'>高亮</a><br>" +
+                       "<pre><code class='language-cpp'>" +
+                        html +
+                       "</code></pre>" +
+                       "</body>" +
+                       "</html>";
+                return html;
             }catch (Exception e) {
                 e.printStackTrace();
                 return e.getMessage();

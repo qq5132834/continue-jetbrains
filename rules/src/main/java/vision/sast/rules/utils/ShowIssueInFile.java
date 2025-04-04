@@ -42,60 +42,42 @@ public class ShowIssueInFile {
 //        CodeCatEditor.createAndShowGUI(stringBuilder.toString());
 //    }
 
-    public static String show(String fileName, List<IssueDto> dtoList) {
-        try {
-            System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
-            List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
+    public static String show(String fileName, List<IssueDto> dtoList) throws Exception {
 
-            List<String> lines = openFile(fileName);
-            List<String> newLines = lines.stream().map(line->{
-                line = StringEscapeUtils.escapeHtml4(line);
-                line = "<li>" + line + "</li>";
-                return line;
-            }).collect(Collectors.toList());
+        System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
+        List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
 
-            StringBuilder sb = new StringBuilder("<ol>");
+        List<String> lines = openFile(fileName);
+        List<String> newLines = lines.stream().map(line->{
+            line = StringEscapeUtils.escapeHtml4(line);
+            line = "<li>" + line + "</li>";
+            return line;
+        }).collect(Collectors.toList());
 
-            int insertTime = 0;
-            for (IssueDto dto : sortedList) {
-                int line = dto.getLine();
-                int index = line + insertTime;
-                if (index > 0) {
-                    String divStr = "<div style='background-color: pink'>"
-                            + dto.getName() + "<br>"
-                            + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType() + "/" + "<br>"
-                            + dto.getRuleDesc() + "<br>"
-                            + dto.getIssueDesc() + "<br>"
-                            + "</div>";
-                    newLines.add(index, divStr);
-                    insertTime++;
-                }
+        StringBuilder sb = new StringBuilder("<ol>");
+
+        int insertTime = 0;
+        for (IssueDto dto : sortedList) {
+            int line = dto.getLine();
+            int index = line + insertTime;
+            if (index > 0) {
+                String divStr = "<div style='background-color: pink'>"
+                        + dto.getName() + "<br>"
+                        + dto.getLine() + "/" + dto.getVtId() + "/" + dto.getRule() + "/" + dto.getDefectLevel() + "/" + dto.getDefectType() + "/" + "<br>"
+                        + dto.getRuleDesc() + "<br>"
+                        + dto.getIssueDesc() + "<br>"
+                        + "</div>";
+                newLines.add(index, divStr);
+                insertTime++;
             }
-
-            for (String line : newLines) {
-                sb.append(line);
-                sb.append("<br>");
-            }
-
-            sb.append("</ol>");
-            String html = "<html>" +
-                    "<head>" +
-//                 "<link href='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css' rel='stylesheet'>" +
-//                 "<script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js'></script>" +
-                    "</head>" +
-                    "<body>" +
-                    "<a href='highLight?file=" + fileName + "'>高亮</a><br>" +
-                    "<pre><code class='language-clike'>" +
-                    sb.toString() +
-                    "</code></pre>" +
-                    "</body>" +
-                    "</html>";
-            //String htmlFileName = new File(fileName).getName() + ".html";
-            //FileUtils.write(new File(htmlFileName), html, Charset.forName("utf-8"));
-            return html;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return e.getMessage();
         }
+
+        for (String line : newLines) {
+            sb.append(line);
+            sb.append("<br>");
+        }
+
+        sb.append("</ol>");
+        return sb.toString();
     }
 }
