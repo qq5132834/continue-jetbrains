@@ -38,6 +38,7 @@ public class SourceCodeUtil {
         List<String> lines = openFile(fileName);
         List<String> newLines = lines.stream().map(line->{
             line = StringEscapeUtils.escapeHtml4(line);
+            line = "<span>" + line + "</span>";
             line = "<li>" + line + "</li>";
             return line;
         }).collect(Collectors.toList());
