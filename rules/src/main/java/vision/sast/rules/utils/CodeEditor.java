@@ -37,7 +37,7 @@ public class CodeEditor {
 
         // 创建 RSyntaxTextArea
         RSyntaxTextArea textArea = new RSyntaxTextArea(20, 60);
-        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS);
+        textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_CPLUSPLUS); //c++语法
         textArea.setCodeFoldingEnabled(true);
         textArea.setText(text);
 
