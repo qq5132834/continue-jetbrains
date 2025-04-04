@@ -30,13 +30,13 @@ public class HighLightUtil {
 
     private static StringBuilder printToken(Token token){
         Token next = token;
-        String text = new String(next.getTextArray());
         StringBuilder stringBuilder = new StringBuilder();
         while (next !=null && next.getType() != TokenTypes.NULL) {
 
             int offset = next.getOffset();
             int len = next.length();
             int type = next.getType();
+            String text = new String(next.getTextArray());
             String tokenImage = text.substring(offset, offset + len);
             String htmlTag = TokenTypeUtil.getHtml(type, tokenImage);
 //            System.out.println(type + " " + tokenImage);
