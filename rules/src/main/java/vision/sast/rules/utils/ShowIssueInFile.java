@@ -6,6 +6,7 @@ import vision.sast.rules.RulesApplication;
 import vision.sast.rules.dto.IssueDto;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -15,45 +16,27 @@ import java.util.stream.Collectors;
 
 public class ShowIssueInFile {
 
-    private static Map<String, String> map = new HashMap<>();
 
-//    public synchronized static void init(){
-//    //字符转义
-//        try {
-//            File file = new File("escape.txt");
-//            System.out.println(file.getAbsolutePath() + ", " + file.exists());
-//            if(file.exists()){
-//                List<String> list = FileUtils.readLines(file,"utf-8");
-//                list.stream().map(l->l.trim()).forEach(l->{
-//                    String[] ss = l.split(" ");
-//                    if(ss!=null && ss.length >= 2){
-//                        map.put(ss[0], ss[ss.length-1]);
-//                    }
-//                });
-//                map.entrySet().forEach(entry->{
-//                    System.out.println(entry.getKey() + " " + entry.getValue());
-//                });
-//            }
-//            else {
-//                file.createNewFile();
-//            }
-//        }catch (Exception exception) {
-//            exception.printStackTrace();
-//        }
-//    }
+    public static List<String> openFile(String fileName) throws Exception {
+
+        String codeFormat = "GBK";
+        if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
+            codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
+        }
+        System.out.println("open file format = " + codeFormat);
+
+        List<String> lines = FileUtils.readLines(new File(fileName),codeFormat);
+
+        return lines;
+
+    }
 
     public static String show(String fileName, List<IssueDto> dtoList) {
         try {
-//            init();
             System.out.println("fileName = " + fileName + ", dtoList = " + dtoList.size());
             List<IssueDto> sortedList = dtoList.stream().sorted(Comparator.comparing(IssueDto::getLine)).toList();
-//            List<String> lines = new ArrayList<>();
 
-            String codeFormat = "GBK";
-            if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
-                codeFormat = (String) RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat);
-            }
-            List<String> lines = FileUtils.readLines(new File(fileName),codeFormat);
+            List<String> lines = openFile(fileName);
             List<String> newLines = lines.stream().map(line->{
                 line = StringEscapeUtils.escapeHtml4(line);
                 line = "<li>" + line + "</li>";
@@ -61,14 +44,6 @@ public class ShowIssueInFile {
             }).collect(Collectors.toList());
 
             StringBuilder sb = new StringBuilder("<ol>");
-
-//            List<String> newLines = lines.stream().map(line -> {
-//                for(Map.Entry<String, String> entry: map.entrySet()){
-//                    line = line.replaceAll(entry.getKey(), entry.getValue());
-//                }
-//                line = "<li>" + line + "</li>";
-//                return line;
-//            }).collect(Collectors.toList());
 
             int insertTime = 0;
             for (IssueDto dto : sortedList) {

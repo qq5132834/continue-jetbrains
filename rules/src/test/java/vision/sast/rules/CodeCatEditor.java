@@ -1,10 +1,14 @@
 package vision.sast.rules;
 
-import java.awt.*;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rsyntaxtextarea.TokenMaker;
+import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
+import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 import javax.swing.*;
-import org.fife.ui.rsyntaxtextarea.*;
-import org.fife.ui.rsyntaxtextarea.modes.PlainTextTokenMaker;
-import org.fife.ui.rtextarea.*;
+import java.awt.*;
 
 public class CodeCatEditor {
 
@@ -17,7 +21,7 @@ public class CodeCatEditor {
 
         TokenMaker tokenMaker;
         TokenMakerFactory tokenMakerFactory;
-        PlainTextTokenMaker plainTextTokenMaker;
+        CPlusPlusTokenMaker cPlusPlusTokenMaker;
 
     }
 
@@ -49,7 +53,7 @@ public class CodeCatEditor {
                #include <stdio.h>
                using namespace std;
                               
-               int main() {
+               int main() {  //你好
                    cout << "Hello, C++!" << endl;
                    return 0;
                }
