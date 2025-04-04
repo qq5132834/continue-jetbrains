@@ -12,20 +12,6 @@ import java.awt.*;
 
 public class CodeEditor {
 
-    public static void main(String[] args) {
-        System.setProperty("java.awt.headless", "false");
-        SwingUtilities.invokeLater(()->{
-            String code = getCatCode();
-            CodeEditor.createAndShowGUI(code);
-        });
-
-
-        TokenMaker tokenMaker;
-        TokenMakerFactory tokenMakerFactory;
-        CPlusPlusTokenMaker cPlusPlusTokenMaker;
-
-    }
-
     public static void createAndShowGUI(String text) {
         JFrame frame = new JFrame("Editor");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,18 +32,5 @@ public class CodeEditor {
         frame.add(sp);
 
         frame.setVisible(true);
-    }
-
-    // 代码猫（ASCII 艺术）
-    private static String getCatCode() {
-        return """
-               #include <stdio.h>
-               using namespace std;
-                              
-               int main() {  //你好
-                   cout << "Hello, C++!" << endl;
-                   return 0;
-               }
-               """;
     }
 }

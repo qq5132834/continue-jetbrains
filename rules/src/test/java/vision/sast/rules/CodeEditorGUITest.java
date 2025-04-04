@@ -21,7 +21,7 @@ public class CodeEditorGUITest {
 //            CodeCatEditor.createAndShowGUI(code);
 //        });
 
-        String code = getCatCode();
+        String code = getCode();
         CodeEditor.createAndShowGUI(code);
 
         TokenMaker tokenMaker;
@@ -45,7 +45,7 @@ public class CodeEditorGUITest {
 
     }
 
-    private static String getCatCode() {
+    private static String getCode() {
         return """
                #include <stdio.h>
                using namespace std;
