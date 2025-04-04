@@ -8,37 +8,37 @@ import java.util.Map;
 public class TokenTypeUtil {
     public static Map<Integer, String> tokenMap = new HashMap<>();
     static {
-        tokenMap.put(TokenTypes.NULL, "NULL");
+        tokenMap.put(TokenTypes.NULL, "NULL"); //0
         tokenMap.put(TokenTypes.COMMENT_EOL, "NULL");
         tokenMap.put(TokenTypes.COMMENT_MULTILINE, "NULL");
         tokenMap.put(TokenTypes.COMMENT_DOCUMENTATION, "NULL");
         tokenMap.put(TokenTypes.COMMENT_KEYWORD, "keyword");
 
-        tokenMap.put(TokenTypes.COMMENT_MARKUP, "NULL");
+        tokenMap.put(TokenTypes.COMMENT_MARKUP, "NULL"); //5
         tokenMap.put(TokenTypes.RESERVED_WORD, "NULL");
         tokenMap.put(TokenTypes.RESERVED_WORD_2, "NULL");
-        tokenMap.put(TokenTypes.FUNCTION, "NULL");
+        tokenMap.put(TokenTypes.FUNCTION, "function"); //函数
         tokenMap.put(TokenTypes.LITERAL_BOOLEAN, "NULL");
 
-        tokenMap.put(TokenTypes.LITERAL_NUMBER_DECIMAL_INT, "NULL");
+        tokenMap.put(TokenTypes.LITERAL_NUMBER_DECIMAL_INT, "NULL"); //10
         tokenMap.put(TokenTypes.LITERAL_NUMBER_FLOAT, "NULL");
         tokenMap.put(TokenTypes.LITERAL_NUMBER_HEXADECIMAL, "NULL");
         tokenMap.put(TokenTypes.LITERAL_STRING_DOUBLE_QUOTE, "NULL");
         tokenMap.put(TokenTypes.LITERAL_CHAR, "NULL");
 
-        tokenMap.put(TokenTypes.LITERAL_BACKQUOTE, "NULL");
-        tokenMap.put(TokenTypes.DATA_TYPE, "NULL");
+        tokenMap.put(TokenTypes.LITERAL_BACKQUOTE, "NULL"); //15
+        tokenMap.put(TokenTypes.DATA_TYPE, "keyword"); //16 数据类型
         tokenMap.put(TokenTypes.VARIABLE, "NULL");
         tokenMap.put(TokenTypes.REGEX, "NULL");
         tokenMap.put(TokenTypes.ANNOTATION, "NULL");
 
-        tokenMap.put(TokenTypes.IDENTIFIER, "NULL");
+        tokenMap.put(TokenTypes.IDENTIFIER, "NULL"); //20 标识符
         tokenMap.put(TokenTypes.WHITESPACE, "NULL");
-        tokenMap.put(TokenTypes.SEPARATOR, "NULL");
+        tokenMap.put(TokenTypes.SEPARATOR, "NULL"); //22
         tokenMap.put(TokenTypes.OPERATOR, "NULL");
         tokenMap.put(TokenTypes.PREPROCESSOR, "NULL");
 
-        tokenMap.put(TokenTypes.MARKUP_TAG_DELIMITER, "NULL");
+        tokenMap.put(TokenTypes.MARKUP_TAG_DELIMITER, "NULL"); //25
         tokenMap.put(TokenTypes.MARKUP_TAG_NAME, "NULL");
         tokenMap.put(TokenTypes.MARKUP_TAG_ATTRIBUTE, "NULL");
         tokenMap.put(TokenTypes.MARKUP_TAG_ATTRIBUTE_VALUE, "NULL");
