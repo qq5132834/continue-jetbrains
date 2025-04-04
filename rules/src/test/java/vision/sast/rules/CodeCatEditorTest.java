@@ -43,7 +43,6 @@ public class CodeCatEditorTest {
 
     }
 
-    // 代码猫（ASCII 艺术）
     private static String getCatCode() {
         return """
                #include <stdio.h>
