@@ -43,7 +43,7 @@ public class SourceCodeController {
                         "<link rel='stylesheet' href='cpp.css'>" +
                        "</head>" +
                        "<body>" +
-                       "<a href='highLight?file=" + file + "'>高亮</a><br>" +
+                       "<a href='highLight?file=" + file + "'>源代码</a><br>" +
                        "<pre><code class='language-cpp'>" +
                         html +
                        "</code></pre>" +
