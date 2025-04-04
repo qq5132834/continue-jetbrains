@@ -84,7 +84,7 @@ public class ShowIssueInFile {
 //                 "<script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js'></script>" +
                     "</head>" +
                     "<body>" +
-                    "<a href='sourceCodeEdit?file=" + fileName + "'>编辑</a><br>" +
+//                    "<a href='sourceCodeEdit?file=" + fileName + "'>编辑</a><br>" +
                     "<pre><code class='language-clike'>" +
                     sb.toString() +
                     "</code></pre>" +
