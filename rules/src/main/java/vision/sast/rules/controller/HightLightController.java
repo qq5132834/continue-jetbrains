@@ -17,7 +17,7 @@ public class HightLightController {
 
             html = "<html>" +
                     "<head>" +
-                    "<link rel='stylesheet' href='cpp.css'>" +
+//                    "<link rel='stylesheet' href='cpp.css'>" +
                     "</head>" +
                     "<body>" +
                     "<pre><code class='language-cpp'>" +
