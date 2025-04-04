@@ -40,6 +40,7 @@ public class SourceCodeController {
                 String html = SourceCodeUtil.show(file, issueDtos);
                 html = "<html>" +
                        "<head>" +
+                        "<link rel='stylesheet' href='highlight.css'>" +
                        "</head>" +
                        "<body>" +
                        "<a href='highLight?file=" + file + "'>高亮</a><br>" +

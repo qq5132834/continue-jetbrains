@@ -33,20 +33,20 @@ public class IndexController {
         return baseInfo();
     }
 
-    @GetMapping("md")
-    public String md(){
-        String md = "# 标题1\n" +
-                "## 标题2\n" +
-                "```java\n" +
-                "String s = \"hello world.\";\n" +
-                "你好，代码。\n" +
-                "```\n";
-
-        Parser parser = Parser.builder().build();
-        Node document = parser.parse(md);
-        HtmlRenderer renderer = HtmlRenderer.builder().build();
-        return renderer.render(document);
-
-    }
+//    @GetMapping("md")
+//    public String md(){
+//        String md = "# 标题1\n" +
+//                "## 标题2\n" +
+//                "```java\n" +
+//                "String s = \"hello world.\";\n" +
+//                "你好，代码。\n" +
+//                "```\n";
+//
+//        Parser parser = Parser.builder().build();
+//        Node document = parser.parse(md);
+//        HtmlRenderer renderer = HtmlRenderer.builder().build();
+//        return renderer.render(document);
+//
+//    }
 
 }
