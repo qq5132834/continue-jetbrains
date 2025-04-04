@@ -21,10 +21,10 @@ public class TokenTypeUtil {
         tokenMap.put(TokenTypes.FUNCTION, "function"); //函数
         tokenMap.put(TokenTypes.LITERAL_BOOLEAN, NULL);
 
-        tokenMap.put(TokenTypes.LITERAL_NUMBER_DECIMAL_INT, NULL); //10
+        tokenMap.put(TokenTypes.LITERAL_NUMBER_DECIMAL_INT, "number"); //10
         tokenMap.put(TokenTypes.LITERAL_NUMBER_FLOAT, NULL);
         tokenMap.put(TokenTypes.LITERAL_NUMBER_HEXADECIMAL, NULL);
-        tokenMap.put(TokenTypes.LITERAL_STRING_DOUBLE_QUOTE, NULL);
+        tokenMap.put(TokenTypes.LITERAL_STRING_DOUBLE_QUOTE, "String");
         tokenMap.put(TokenTypes.LITERAL_CHAR, NULL);
 
         tokenMap.put(TokenTypes.LITERAL_BACKQUOTE, NULL); //15

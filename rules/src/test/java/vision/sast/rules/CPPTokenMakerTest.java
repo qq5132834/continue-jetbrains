@@ -18,6 +18,7 @@ public class CPPTokenMakerTest {
                 {
                     int a = 1;
                     printf("%d",a);
+                    return 1;
                 }
                 """;
         // TokenTypes.java 类型
@@ -47,8 +48,8 @@ public class CPPTokenMakerTest {
             int len = next.length();
             int type = next.getType();
             String tokenImage = text.substring(offset, offset + len);
-//            System.out.println(type + " " + tokenImage);
-            System.out.print(TokenTypeUtil.getHtml(type, tokenImage));
+            System.out.println(type + " " + tokenImage);
+//            System.out.print(TokenTypeUtil.getHtml(type, tokenImage));
 //            System.out.print(tokenImage);
             next = next.getNextToken();
         }
