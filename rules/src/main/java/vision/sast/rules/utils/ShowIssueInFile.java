@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class ShowIssueInFile {
 
 
-    public static List<String> openFile(String fileName) throws Exception {
+     public static List<String> openFile(String fileName) throws Exception {
 
         String codeFormat = "GBK";
         if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
@@ -84,7 +84,7 @@ public class ShowIssueInFile {
 //                 "<script src='https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js'></script>" +
                     "</head>" +
                     "<body>" +
-//                    "<a href='sourceCodeEdit?file=" + fileName + "'>编辑</a><br>" +
+                    "<a href='highLight?file=" + fileName + "'>高亮</a><br>" +
                     "<pre><code class='language-clike'>" +
                     sb.toString() +
                     "</code></pre>" +

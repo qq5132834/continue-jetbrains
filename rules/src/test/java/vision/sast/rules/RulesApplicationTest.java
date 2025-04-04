@@ -1,14 +1,8 @@
 package vision.sast.rules;
 
-import vision.sast.rules.dto.IssueDto;
-import vision.sast.rules.utils.ShowIssueInFile;
-
-import java.util.ArrayList;
-
 public class RulesApplicationTest {
-    public static void main(String[] args) throws Exception {
-        RulesApplication.loadProperties();
-        String str = ShowIssueInFile.show("src/test/resources/ANSI_test.c", new ArrayList<IssueDto>());
-        System.out.println(str);
+    public static void main(String[] args) {
+        String[] args1 = {"src/test/resources/issue.json"};
+        RulesApplication.main(args1);
     }
 }
