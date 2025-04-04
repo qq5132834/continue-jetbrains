@@ -11,7 +11,7 @@ public class HightLightController {
     @GetMapping("highLight")
     public synchronized String highLight(String file) {
         try {
-            String html = HighLightUtil.highlight(file);
+            String html = HighLightUtil.highlightFile(file);
 
             html = "<html>" +
                     "<head>" +

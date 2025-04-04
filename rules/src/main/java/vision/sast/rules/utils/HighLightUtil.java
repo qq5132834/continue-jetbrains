@@ -10,18 +10,31 @@ import java.util.List;
 
 public class HighLightUtil {
 
-    public static String highlight(String file) throws Exception {
+    public static String highlightFile(String file) throws Exception {
         StringBuilder sb = new StringBuilder();
         List<String> lines = SourceCodeUtil.openFile(file);
         lines.stream().forEach(line->{
-            Segment segment = createSegment(line);
-            TokenMaker tm = new CPlusPlusTokenMaker();
-            Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
-            StringBuilder stringBuilder = printToken(token);
+//            Segment segment = createSegment(line);
+//            TokenMaker tm = new CPlusPlusTokenMaker();
+//            Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
+//            StringBuilder stringBuilder = printToken(token);
+//            stringBuilder.append("\n");
+//            sb.append(stringBuilder.toString());
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(highlightLine(line));
             stringBuilder.append("\n");
             sb.append(stringBuilder.toString());
         });
         return sb.toString();
+    }
+
+    public static String highlightLine(String line) {
+        Segment segment = createSegment(line);
+        TokenMaker tm = new CPlusPlusTokenMaker();
+        Token token = tm.getTokenList(segment, TokenTypes.NULL, 0);
+        StringBuilder stringBuilder = printToken(token);
+        return stringBuilder.toString();
     }
 
     private static Segment createSegment(String code) {
