@@ -20,6 +20,7 @@ public class CPPTokenMakerTest {
                 }
                 """;
         // TokenTypes.java 类型
+        TokenTypes tokenTypes;
         Arrays.stream(code.split("\n")).forEach(line->{
             CPPTokenMakerTest cppTokenMakerTest = new CPPTokenMakerTest();
             Segment segment = cppTokenMakerTest.createSegment(line);
