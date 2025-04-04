@@ -33,12 +33,6 @@ public class SourceCodeController {
         return issuesMap.get(key).size();
     }
 
-    @GetMapping("highLight")
-    public synchronized String highLight(String file) {
-
-        return "editing.";
-    }
-
     @GetMapping("sourceCode")
     public synchronized String sourceCode(String vtid, String file) {
         if (vtid != null && file != null) {
