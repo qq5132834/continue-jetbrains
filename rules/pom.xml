@@ -77,6 +77,13 @@
             <scope>provided</scope>
         </dependency>
 
+            <dependency>
+                <groupId>com.fifesoft</groupId>
+                <artifactId>rsyntaxtextarea</artifactId>
+                <version>3.3.2</version>
+            </dependency>
+
+
     </dependencies>
 
     <build>
