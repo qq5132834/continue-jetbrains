@@ -1,10 +1,7 @@
-package vision.sast.rules.utils;
+package vision.sast.rules;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
-import org.fife.ui.rsyntaxtextarea.TokenMaker;
-import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
-import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 import javax.swing.*;

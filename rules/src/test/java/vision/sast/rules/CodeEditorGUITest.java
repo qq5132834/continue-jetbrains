@@ -5,7 +5,6 @@ import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
 import org.fife.ui.rsyntaxtextarea.TokenMaker;
 import org.fife.ui.rsyntaxtextarea.TokenMakerFactory;
 import org.fife.ui.rsyntaxtextarea.modes.CPlusPlusTokenMaker;
-import vision.sast.rules.utils.CodeEditor;
 
 import javax.swing.text.Segment;
 
