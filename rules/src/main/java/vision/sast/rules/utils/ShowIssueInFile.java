@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class ShowIssueInFile {
 
 
-    public static List<String> openFile(String fileName) throws Exception {
+    private static List<String> openFile(String fileName) throws Exception {
 
         String codeFormat = "GBK";
         if(RulesApplication.PROPERTIES.get(PropertiesKey.codeFormat)!=null){
