@@ -42,7 +42,6 @@ public class SourceCodeUtil {
             return line;
         }).collect(Collectors.toList());
 
-        StringBuilder sb = new StringBuilder("<ol>");
 
         int insertTime = 0;
         for (IssueDto dto : sortedList) {
@@ -60,6 +59,7 @@ public class SourceCodeUtil {
             }
         }
 
+        StringBuilder sb = new StringBuilder("<ol>");
         for (String line : newLines) {
             sb.append(line);
             sb.append("<br>");
